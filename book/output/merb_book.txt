@@ -1,0 +1,673 @@
+Life On The Edge With Merb, DataMapper & RSpec
+=================================================
+
+- [Life On The Edge With Merb, DataMapper & RSpec](#contents_anchor_1)
+- [Forward](#contents_anchor_2)
+- [Preface](#contents_anchor_3)
+- [What is Merb, DataMapper & RSpec?](#contents_anchor_4)
+    - [Merb](#contents_anchor_5)
+    - [Datamapper](#contents_anchor_6)
+    - [RSpec](#contents_anchor_7)
+- [What About Ruby On Rails?](#contents_anchor_8)
+- [Communities](#contents_anchor_9)
+    - [Websites](#contents_anchor_10)
+    - [IRC Channels - freenode.net](#contents_anchor_11)
+    - [Mailing Lists](#contents_anchor_12)
+    - [Bug Trackers](#contents_anchor_13)
+- [Getting Started](#contents_anchor_14)
+    - [Installing Merb](#contents_anchor_15)
+    - [Installing Datamapper](#contents_anchor_16)
+    - [Install RSpec](#contents_anchor_17)
+- [Creating an App](#contents_anchor_18)
+    - [Configuring Merb](#contents_anchor_19)
+- [The Framework](#contents_anchor_20)
+- [RSpec](#contents_anchor_21)
+        - [What is it?](#contents_anchor_22)
+        - [Why test?](#contents_anchor_23)
+        - [What to test?](#contents_anchor_24)
+    - [mocking](#contents_anchor_25)
+    - [Helpers](#contents_anchor_26)
+    - [Spec'ing Models](#contents_anchor_27)
+    - [Spec'ing Views](#contents_anchor_28)
+    - [Spec'ing Controllers](#contents_anchor_29)
+- [A little blog](#contents_anchor_30)
+        - [Models](#contents_anchor_31)
+        - [Routing](#contents_anchor_32)
+        - [Controllers](#contents_anchor_33)
+        - [Views](#contents_anchor_34)
+        - [Mailers](#contents_anchor_35)
+    - [Authentication](#contents_anchor_36)
+    - [Attachments](#contents_anchor_37)
+    - [Caching](#contents_anchor_38)
+- [Gotchas](#contents_anchor_39)
+    - [Merb](#contents_anchor_40)
+    - [DataMapper](#contents_anchor_41)
+    - [RSpec](#contents_anchor_42)
+- [Submitting a patch](#contents_anchor_43)
+        - [Diffs](#contents_anchor_44)
+        - [Docs](#contents_anchor_45)
+        - [Specs](#contents_anchor_46)
+- [Hacking Merb](#contents_anchor_47)
+    - [ ](#contents_anchor_48)
+    - [Changing the directory structure](#contents_anchor_49)
+- [Deploying a Merb App](#contents_anchor_50)
+
+# Life On The Edge With Merb, DataMapper & RSpec
+# Forward
+
+(TODO) the forward
+# Preface
+
+At New Bamboo we've been building our internal applications in Merb for quite some time now. This is a collaborative effort to document the features of Merb and DataMapper, while also providing an example Merb application.  
+
+___Who is this for?___
+
+The target reader is someone who has some experience with writing Ruby on Rails applications, and is looking to try out a new framework. So if your looking for the [AWDR](http://www.pragprog.com/titles/rails2) equivalent for Merb, you may be disappointed as not all topics will be covered.
+
+
+Copyright &copy; 2008 Matthew Ford. All rights reserved. 
+
+With generous contributions from:
+
+* Andy Kent - Caching, book formatting and layout
+* Damien Tanner - A Little blog
+* Ben Reubenstein - Deployment
+* (add your name)
+
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/">Creative Commons Attribution-Noncommercial 2.0 UK: England & Wales License</a>.<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/">
+
+<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/2.0/uk/88x31.png" />
+</a>
+
+Source code is dual licensed under the MIT and GPL licenses:
+
+* http://www.opensource.org/licenses/mit-license.php
+* http://www.gnu.org/licenses/gpl.html
+
+
+
+
+# What is Merb, DataMapper & RSpec?
+
+> If you're not living on the edge, you're taking up too much room. - Alice Bartlett
+
+Merb (Mongrel + ERB), DataMapper and RSpec are all open source projects, which can be used for building kick-ass web applications. As they are in active development, it can be hard to keep up, but we'll try our best to keep up to date.
+
+## Merb
+
+Merb is a bit like Ruby on Rails, as they both are frameworks for building web applications. It's a relatively new framework and was created by [Ezra Zygmuntowicz](http://brainspl.at/).
+
+If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Where Merb differs the most from Rails is it's approach to modularisation, it's not tied down to a particular ORM for example so you can use any one you wish.
+
+This means the core of Merb is simple with additional functionality provided by plugins (gems).
+
+Merb is actually made up of two gems, merb-core and merb-more. This is so you can pick and choose the functionality you need, the gem merb installs both merb-core and merb-more so you can get started straight away.
+
+You might be wondering what's the benefit of this? Well merb-core can be used as an upload server, provide an api or as simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary. It also supports the [rack webserver interface](http://rack.rubyforge.org/) so you can use any web server that has rack support (mongrel, thin, etc.) 
+
+## Datamapper
+
+DataMapper is a Object-Relational Mapper (ORM) written in Ruby, created by Sam Smoot and is what we'll be using with Merb, you could use the same ORM Rails uses (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
+
+It has some nice features which makes it faster than ActiveRecord in some cases, but what really stands out for me is the way it handles database attributes. The schema, migrations and attributes are all defined in one place, your model. So you no longer have to look around in your database or other files to see what is defined.
+
+DataMapper has some similarities with ActiveRecord but we will highlight the differences as we go along.
+
+## RSpec
+
+(TODO) intro to RSpec
+# What About Ruby On Rails?
+
+> [Merb is] Harder, Better, Faster, Stronger, to quote Daft Punk - Max Williams
+
+So what's the big deal, we have Ruby on Rails and that's enough isn't it? There is little to no doubt that Ruby on Rails has rocked the web application development world. You have to give credit where credit's due, but it can be unforgiving if you don't want to do things 'the Rails way'.
+ 
+Where Rails is opinionated, Merb is agonistic. You can easily use your favourite ORM (ActiveRecord, DataMapper, Sequel, etc.), Javascript Library and template language.
+
+Merb also has super-fast routing and is thread-safe (If performant were a word, Merb would be it). The core functionality is kept separate from the other plugins and it uses less Ruby 'magic', which makes it easy to understand.
+
+Rails has received a lot of criticism for not being suitable for large scale web applications, which isn't necessarily true, but the Merb development team has set out to prove that Ruby is a viable language for building fast and scaleable web applications.
+
+At the end of the day it's about choice, there are many new Ruby frameworks springing up, undoubtedly helped by the success of Rails, but in my opinion Merb shows the most promise.
+
+If you'd like to take a look at some other frameworks these links should get you started:
+
+- http://camping.rubyforge.org/files/README.html
+- http://www.nitroproject.org/ 
+- http://ramaze.rubyforge.org/
+- http://sinatra.rubyforge.org/
+- http://halcyon.rubyforge.org/
+- http://wisteria.swiftcore.org/
+
+# Communities
+
+None of this would be possible without the help of the fantastic communities around these open source projects so instead of being tucked away in the appendix here is how to get involved with them.
+
+## Websites
+
+These are the first places to go for help, check out the apis and see if you can find your answer there.
+
+* http://merbivore.com/
+* http://datamapper.org/
+* http://rspec.info/
+
+## IRC Channels - freenode.net
+
+If you can't find what you were looking for in the apis then you could join the respective irc channel and ask your question in there. 
+
+* #merb
+* #datamapper
+* #rspec
+
+## Mailing Lists
+
+The mailing lists are another good way to get help, the response time isn't as fast as asking in an irc channel but it can be useful to do a search to see if someone else has had your problem before.
+
+* http://groups.google.com/group/merb/
+* http://groups.google.com/group/datamapper/
+* http://rubyforge.org/pipermail/rspec-users/
+
+## Bug Trackers
+
+Your problem may or may not be a known bug, search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases - even better a patch!).
+
+* http://merb.devjavu.com/
+* http://wm.lighthouseapp.com/projects/4819-datamapper/overview
+* http://rspec.lighthouseapp.com/
+
+# Getting Started
+
+Before we get started I'm going to assume you have the following installed:
+
+* [Ruby](http://www.ruby-lang.org/) 
+* A DBMS (we'll use [MySQL](http://mysql.org/))
+* [SVN](http://subversion.tigris.org/) and [git](http://git.or.cz/) (if you want to get the source code)
+
+
+## Installing Merb
+
+If you just want to play around with Merb grab the gem:
+    
+    sudo gem install merb -y
+    
+*Windows users see [this post](http://www.ghostonthird.com/2007/11/17/merb-on-windows-it-works/) for the install instructions.*
+    
+On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
+and you'll need to install the following gems:
+
+    sudo gem install mongrel json_pure erubis mime-types rspec hpricot \
+        mocha rubigen haml markaby mailfactory ruby2ruby -y
+
+    (TODO) - git repo for merb trunk 
+    svn co http://svn.devjavu.com/merb/trunk merb && cd merb && rake install
+
+Take note that if you need to use JSON you should install the json gem, json_pure is used so merb will install on JRuby.
+
+Merb is ORM agnostic, but as the title of this book suggests we'll be using Datamapper.
+Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
+
+## Installing Datamapper
+
+    sudo gem install merb_datamapper
+    sudo gem install data_objects
+    sudo gem install do_mysql || do_sqlite3 || do_postgres
+
+You need to install the correct database adaptor for the database you are using. I'll use MySQL, 
+but you can use any of the above. If you get the following error message, 'Cannot find mysql_config in 
+your path', then you need to add your MySQL bin directory to your path or you can run this is the command:
+
+    sudo env PATH=/usr/local/mysql/bin:$PATH gem install pkg/ 
+    do_mysql-0.2.2.gem -- --with-mysql-dir=/usr/local/mysql
+
+    # If updating the gem:
+    sudo env PATH=/usr/local/mysql/bin:$PATH gem update do_mysql -- \
+        --with-mysql-dir=/usr/local/mysql
+
+## Install RSpec
+
+To install the gem, or get the source from trunk:
+
+    gem install rspec
+    svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
+    
+
+
+
+# Creating an App
+
+Right now that we've got all of that installed, time to create some test Merb application. Merb follows the same naming convention for projects that rails does, so 'my\_test\_app' and 'Test2' for example are valid names but 'T 3' is not, as they need to be valid SQL table names.
+
+I like to keep my projects in different directories, so I have a different folder for my Merb apps and 
+Rails apps (but it's up to you). So at the command line type:
+
+    mkdir merb
+    cd merb
+    merb example_one
+    
+This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
+
+    # expected output
+    create  
+    create  app/controllers
+    create  app/models
+    create  app/helpers
+    create  app/mailers/helpers
+    create  app/mailers/views/layout
+    create  app/parts/helpers
+    create  app/parts/views/layout
+    create  app/views/layout
+    create  app/views/exceptions
+    create  config/environments
+    create  lib
+    create  log
+    create  public/images
+    create  public/javascripts
+    create  public/stylesheets
+    create  script
+    create  spec/models
+    create  spec/controllers
+    create  test/unit
+    create  gems
+    create  Rakefile
+    create  app/controllers/application.rb
+    create  app/controllers/exceptions.rb
+    create  app/helpers/global_helper.rb
+    create  app/parts/views/layout/application.html.erb
+    create  app/mailers/views/layout/application.html.erb
+    create  app/mailers/views/layout/application.text.erb
+    create  app/views/layout/application.html.erb
+    create  app/views/exceptions/internal_server_error.html.erb
+    create  app/views/exceptions/not_found.html.erb
+    create  app/views/exceptions/not_acceptable.html.erb
+    create  public/images/merb.jpg
+    create  public/stylesheets/master.css
+    create  public/merb.fcgi
+    create  config/boot.rb
+    create  config/merb_init.rb
+    create  config/router.rb
+    create  config/upload.conf
+    create  config/dependencies.rb
+    create  config/environments/development.rb
+    create  config/environments/production.rb
+    create  config/environments/test.rb
+    create  spec/spec_helper.rb
+    create  test/test_helper.rb
+    create  config/merb.yml
+    create  script/stop_merb
+    create  script/generate
+    create  script/destroy
+    
+
+    
+## Configuring Merb
+
+Right so lets try and get the server running, before we do that you'll need to edit the dependencies.rb 
+file so un-comment the following lines (this is only necessary if you need to connect to a database):
+
+config/dependencies.rb
+    
+    use_orm :data_mapper
+
+    use_test :rspec
+
+    dependencies "RedCloth", "merb_helpers"
+      
+
+Typing merb now in your command line will try and start the server.
+
+    Started merb_init.rb ...
+    No database.yml file found in /Users/work/merb/t/example_one/config.
+    A sample file was created called database.sample.yml for you to copy and edit.
+
+As you can see, we forgot to set up the database. A sample file has kindly been generated for us. 
+So create a database.yml file a bit like this one (remember to create the database you specify):
+
+    # This is a sample database file for the DataMapper ORM
+    :development:
+      :adapter: mysql
+      :database: test
+      :username: root
+      :password: 
+      :host: localhost
+
+      
+Starting merb again shows everything is running ok:
+
+    Merb started with these options:
+    --- 
+    :exception_details: true
+    :query_string_whitelist: []
+
+    :port: "4000"
+    :environment: development
+    :session_secret_key: /USERS/WORK/BOOK/MERB_BOOK/CODE/EXAMPLE_ONE2400
+    :reloader_time: 0.5
+    :host: 0.0.0.0
+    :mongrel_x_sendfile: true
+    :reloader: true
+    :cache_templates: false
+    :use_mutex: true
+    :merb_root: /Users/work/book/merb_book/code/example_one
+    :session_id_cookie_only: true
+
+    Started merb_init.rb ...
+    Connecting to database...
+    Loading Application...
+    Compiling routes..
+    Loaded DEVELOPMENT Environment...
+    Not Using Sessions
+
+You'll notice Merb runs on port 4000, but this can be changed with flag -p [port number]. More options can be found by typing:
+
+    merb --help
+
+
+# The Framework
+
+Lets take a closer look at the directory structure that we've just created. I'll give brief overview of the framework here and go into further details of each component in subsequent chapters.
+
+(TODO) - book:publish to add image
+![Directory Stucture](dir.jpg)
+
+The app folder contains your usual Models, Views and Controllers, Helpers. It also has Parts (they inherit from AbstractController), similar to the old Rails components, but are lightweight and are useful for sidebars, widgets etc. Mailers (which also inherit from the AbstractController) have their own folder where the controllers and views live. 
+
+    app
+      |--- controllers
+      |--- models
+      |--- helpers
+      |--- mailers
+      |--- helpers
+      |--- parts
+      |--- views
+
+The config folder has all the configuration files and environments. It's important to edit the following files in here, dependencies.rb and database.yml before running Merb. The Merb router is defined here too, which map the incoming requests to the controllers (the syntax is not the same as Rails). 
+
+    config
+         \--- environments
+
+Lib Folder contains extra stuff, not necessarily loaded on boot, need to add to dependencies. 
+
+(TODO) - better lib desc, loading files etc
+    
+    lib
+    
+The Log directory contains logs, process id's.
+    
+    log
+    
+Public will hold all your assets, just like rails. 
+    
+    public
+          \--- images
+          \--- javascripts
+          \--- stylesheets
+    
+Script contains the generators and scripts. Run script/generate --help to see what generators you have available. 
+    
+    script
+    
+Spec is for RSpec tests.
+    
+    spec
+        \--- models
+        \--- controllers
+    
+Test is for test/unit (same as Rails)
+    
+    test
+        \--- unit
+        
+Gem is there so you can package gems with your application, as plug-ins are gems 
+    
+    gems
+    
+ 
+Unlike Rails there is no db, doc or vendor directory when generating an empty app.
+# RSpec
+
+(TODO) -intro how it compares with TestUnit, how to read merb/dm tests
+
+### What is it?
+
+(TODO) - BDD
+
+### Why test?
+
+(TODO) benefits of testing
+
+### What to test?
+
+(TODO) - how to write good test and what should just trust works
+
+## mocking
+
+(TODO) - What is it and why mock
+## Helpers
+
+(TODO) - what should you use helpers for?
+## Spec'ing Models
+
+(TODO) - How to spec models, use example merb/dm test talk through them, mocking
+## Spec'ing Views
+
+(TODO) - What they should test
+## Spec'ing Controllers
+
+(TODO) - What they should test
+# A little blog
+
+In the examples we'll be developing a small blogging application.
+First of all let's define some of the functionality we would expect from any blogging application. 
+
+* Publishing posts
+* Leaving comments
+* Sending email notifications
+* Attaching images
+* Authentication
+
+Lets get started with out application:
+
+    merb simple_blog
+
+We're going to use the Linguistics gem so you'll need to install it.
+(TODO) - linguistics gem install
+
+Set up the configuration files as before:
+
+config/dependencies.rb
+
+    use_orm :data_mapper
+
+    use_test :rspec
+
+    dependencies "RedCloth", "merb_helpers"
+    dependencies 'linguistics'
+    
+Now add a config/database.yml file with the following:
+
+    ---
+    :development: &defaults
+      :adapter: mysql
+      :database: simple_blog
+      :username: root
+      :password: 
+      :host: localhost
+
+    :test:
+      <<: *defaults
+      :database: simple_blog_test
+
+    :production:
+      <<: *defaults
+      :database: simple_blog_production
+      
+Now we're ready to rock and roll ...
+### Models
+
+Having discussed the functionality we can deduce that we will need the following models, Post, Comment, Tag, User and Image.
+
+Merb has a model generator just as rails does:
+
+    script/generate model post
+
+This is make a post model for you, provide that you have defined an orm and the database simple_blog, in the previous steps.
+
+So DM models differ a bit from AR models as previously stated. Migrations have been added but we will go through them later on, for new we will define our database fields in our model. Defining database properties is achieved with the property method.
+
+    property :title,      :string,    :lazy => false
+    
+This is the title property of the post model. As we can see, the parameters are the name of the property followed by the type and finally the options. 
+
+(TODO) - property options, explain lazy
+(TODO) - rake task dm:db:auto_migrate
+
+
+(TODO) - custom validation
+(TODO) - maybe mention migrations
+(TODO) - Association
+(TODO) - STI, comment on comments?
+(TODO) - http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq polymorphic associations
+
+### Routing
+
+(TODO) - Defining routes, and resources
+(TODO) - Nested routes
+(TODO) - Namespaces
+(TODO) - Show routes, merb.show_routes in merb's irb console (merb -i)
+### Controllers
+
+(TODO) - filters, how the chaining works and :throw
+(TODO) - how params get passed in controllers
+(TODO) - usecase for a part, explain what they are (possibly comments?) - or a side bar of some sorts
+(TODO) - Admin controller
+(TODO) - Exception Controller
+(TODO) - specify a layout
+(TODO) - rest
+(TODO) - content_type
+(TODO) - flash?
+### Views
+
+(TODO) - form helpers
+(TODO) - mention you can use other template languages
+(TODO) - partial :comment, :with => @post.comments, :as => comments
+### Mailers
+
+(TODO) - sending mail
+(TODO) - mail templates in /views
+## Authentication
+
+(TODO) - Rolling your own
+(TODO) - integrating RESTful auth (merbful)
+## Attachments
+
+(TODO) - attachment_pu
+(TODO) - image resize/crop
+(TODO) - downloading
+## Caching
+
+(TODO) - session cache
+(TODO) - Query/Mem cache
+
+# Gotchas
+
+## Merb
+(TODO) - Merb/Rails diffs
+
+## DataMapper
+(TODO) - DM / AR diffs
+
+## RSpec
+
+(TODO) - Test:Unit / RSpec diffs
+# Submitting a patch
+http://www.gweezlebur.com/2008/2/1/so-you-want-to-contribute-to-merb-core-part-1
+
+(TODO) - example patch
+
+### Diffs
+(TODO) - where to send diffs
+
+### Docs
+(TODO) - doc convention
+
+### Specs
+(TODO) - write specs
+# Hacking Merb
+(TODO) - Hacking Merb
+
+## 
+
+## Changing the directory structure
+
+    # Build the framework paths.
+    #
+    # By default, the following paths will be used:
+    # application:: Merb.root/app/controller/application.rb
+    # config:: Merb.root/config
+    # lib:: Merb.root/lib
+    # log:: Merb.root/log
+    # view:: Merb.root/app/views
+    # model:: Merb.root/app/models
+    # controller:: Merb.root/app/controllers
+    # helper:: Merb.root/app/helpers
+    # mailer:: Merb.root/app/mailers
+    # part:: Merb.root/app/parts
+    #
+    # To override the default, set Merb::Config[:framework] in your initialization file.
+    # Merb::Config[:framework] takes a Hash whose key is the name of the path, and whose
+    # values can be passed into Merb.push_path (see Merb.push_path for full details).
+    #
+    # ==== Note
+    # All paths will default to Merb.root, so you can get a flat-file structure by doing
+    # Merb::Config[:framework] = {}
+    # 
+    # ==== Example
+    # {{[
+    #   Merb::Config[:framework] = {
+    #     :view => Merb.root / "views"
+    #     :model => Merb.root / "models"
+    #     :lib => Merb.root / "lib"
+    #   }
+    # ]}}
+    # 
+    # That will set up a flat directory structure with the config files and controller files
+    # under Merb.root, but with models, views, and lib with their own folders off of Merb.root.
+    class Merb::BootLoader::BuildFramework < Merb::BootLoader
+      class << self
+
+        def run
+          build_framework
+        end
+  
+        # This method should be overridden in merb_init.rb before Merb.start to set up a different
+        # framework structure
+        # DOC: Yehuda Katz FAILED
+        def build_framework
+          unless Merb::Config[:framework]
+            %w[view model controller helper mailer part].each do |component|
+              Merb.push_path(component.to_sym, Merb.root_path("app/#{component}s"))
+            end
+            Merb.push_path(:application,  Merb.root_path("app/controllers/application.rb"))
+            Merb.push_path(:config,       Merb.root_path("config"), nil)
+            Merb.push_path(:environments, Merb.dir_for(:config) / "environments", nil)
+            Merb.push_path(:lib,          Merb.root_path("lib"), nil)
+            Merb.push_path(:log,          Merb.log_path, nil)
+            Merb.push_path(:public,       Merb.root_path("public"), nil)
+            Merb.push_path(:stylesheet,   Merb.dir_for(:public) / "stylesheets", nil)
+            Merb.push_path(:javascript,   Merb.dir_for(:public) / "javascripts", nil)
+            Merb.push_path(:image,        Merb.dir_for(:public) / "images", nil)        
+          else
+            Merb::Config[:framework].each do |name, path|
+              Merb.push_path(name, Merb.root_path(path.first), path[1])
+            end
+          end
+        end
+      end
+    end
+
+
+
+# Deploying a Merb App
+
+(TODO) - get ben32 stuff on this

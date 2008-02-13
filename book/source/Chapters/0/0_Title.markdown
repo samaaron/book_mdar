@@ -1,0 +1,1 @@
+# Life On The Edge With Merb, DataMapper & RSpec

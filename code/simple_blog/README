@@ -1,0 +1,13 @@
+# simple_blog
+
+As the name suggests it's a very simple blog.
+
+Dependancies: merb, datamapper
+
+TODO:
+some sort of spam catcher, either a capatcha/akismet or could
+roll our own, having used the Linguistics module i think something like
+"What is three plus ten?" would suffice. that and a comment block email list?
+
+get 'inspiration' from the current merb/dm blogs MrBlog and blurb
+might make a branch off blurb (when I learn git)

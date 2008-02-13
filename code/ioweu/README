@@ -1,0 +1,22 @@
+simple I-O-U tracker
+
+Dependancies: merb, datamapper, DataObjects, do_sqlite3 
+
+An example merb application, which uses sqlite3
+
+It's a bit of a contrived example as accounts probably don't need to be a separate model but oh well.
+
+TODO:
+custom validation moved from controller to model for transaction creation
+actually use the transactions in DM
+convert some controllers to a part controller?
+code for cancelling out i-owe-you's ie:
+A owes B 3
+B owes C 2
+C owes A 1
+
+would return
+
+well in that case nobody owes anything
+
+actually doing this hard maybe just sum up I-O-U's

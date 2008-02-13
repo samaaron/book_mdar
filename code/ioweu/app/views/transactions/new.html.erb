@@ -1,0 +1,8 @@
+<h2>New I-O-U</h2><% form_for @transaction, :action => url(:transactions) do %>
+  <fieldset>
+  <%= partial :form %>
+    <%= submit_button "Do it!" -%>
+  </fieldset>
+<% end %>
+
+<h3><%= link_to "Home", "/" %></h3>
