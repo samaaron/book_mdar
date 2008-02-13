@@ -28,8 +28,7 @@ use_test :rspec
 
 # These are some examples of how you might specify dependencies.
 # 
-dependencies "RedCloth", "merb_helpers"
-dependencies 'linguistics'
+dependencies "RedCloth", "merb_helpers", "linguistics"
 
 # OR
 # dependency "RedCloth", "> 3.0"

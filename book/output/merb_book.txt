@@ -21,36 +21,54 @@ Life On The Edge With Merb, DataMapper & RSpec
 - [Creating an App](#contents_anchor_18)
     - [Configuring Merb](#contents_anchor_19)
 - [The Framework](#contents_anchor_20)
-- [RSpec](#contents_anchor_21)
-        - [What is it?](#contents_anchor_22)
-        - [Why test?](#contents_anchor_23)
-        - [What to test?](#contents_anchor_24)
-    - [mocking](#contents_anchor_25)
-    - [Helpers](#contents_anchor_26)
-    - [Spec'ing Models](#contents_anchor_27)
-    - [Spec'ing Views](#contents_anchor_28)
-    - [Spec'ing Controllers](#contents_anchor_29)
-- [A little blog](#contents_anchor_30)
-        - [Models](#contents_anchor_31)
-        - [Routing](#contents_anchor_32)
-        - [Controllers](#contents_anchor_33)
-        - [Views](#contents_anchor_34)
-        - [Mailers](#contents_anchor_35)
-    - [Authentication](#contents_anchor_36)
-    - [Attachments](#contents_anchor_37)
-    - [Caching](#contents_anchor_38)
-- [Gotchas](#contents_anchor_39)
-    - [Merb](#contents_anchor_40)
-    - [DataMapper](#contents_anchor_41)
-    - [RSpec](#contents_anchor_42)
-- [Submitting a patch](#contents_anchor_43)
-        - [Diffs](#contents_anchor_44)
-        - [Docs](#contents_anchor_45)
-        - [Specs](#contents_anchor_46)
-- [Hacking Merb](#contents_anchor_47)
-    - [ ](#contents_anchor_48)
-    - [Changing the directory structure](#contents_anchor_49)
-- [Deploying a Merb App](#contents_anchor_50)
+- [A little blog](#contents_anchor_21)
+    - [Models](#contents_anchor_22)
+        - [Getting started](#contents_anchor_23)
+            - [Properties](#contents_anchor_24)
+            - [Associations](#contents_anchor_25)
+                - [Polymorphic associations](#contents_anchor_26)
+                - [Where is my has_many :through?!](#contents_anchor_27)
+            - [Validation](#contents_anchor_28)
+            - [Callbacks](#contents_anchor_29)
+            - [Migrations](#contents_anchor_30)
+        - [CRUD](#contents_anchor_31)
+            - [Creating](#contents_anchor_32)
+            - [Reading (aka finding)](#contents_anchor_33)
+                - [Count](#contents_anchor_34)
+                - [Each](#contents_anchor_35)
+            - [Updating](#contents_anchor_36)
+            - [Destroying](#contents_anchor_37)
+    - [Routing](#contents_anchor_38)
+    - [Controllers](#contents_anchor_39)
+    - [Views](#contents_anchor_40)
+        - [Partials](#contents_anchor_41)
+    - [Mailers](#contents_anchor_42)
+    - [Authentication](#contents_anchor_43)
+    - [Attachments](#contents_anchor_44)
+- [RSpec](#contents_anchor_45)
+        - [What is it?](#contents_anchor_46)
+        - [Why test?](#contents_anchor_47)
+        - [What to test?](#contents_anchor_48)
+    - [mocking](#contents_anchor_49)
+    - [Helpers](#contents_anchor_50)
+    - [Spec'ing Models](#contents_anchor_51)
+    - [Spec'ing Views](#contents_anchor_52)
+    - [Spec'ing Controllers](#contents_anchor_53)
+        - [Getting started](#contents_anchor_54)
+        - [Testing multipart forms](#contents_anchor_55)
+    - [Caching](#contents_anchor_56)
+- [Gotchas](#contents_anchor_57)
+    - [Merb](#contents_anchor_58)
+    - [DataMapper](#contents_anchor_59)
+    - [RSpec](#contents_anchor_60)
+- [Submitting a patch](#contents_anchor_61)
+        - [Diffs](#contents_anchor_62)
+        - [Docs](#contents_anchor_63)
+        - [Specs](#contents_anchor_64)
+- [Hacking Merb](#contents_anchor_65)
+    - [ ](#contents_anchor_66)
+    - [Changing the directory structure](#contents_anchor_67)
+- [Deploying a Merb App](#contents_anchor_68)
 
 # Life On The Edge With Merb, DataMapper & RSpec
 # Forward
@@ -424,40 +442,11 @@ Gem is there so you can package gems with your application, as plug-ins are gems
     
  
 Unlike Rails there is no db, doc or vendor directory when generating an empty app.
-# RSpec
-
-(TODO) -intro how it compares with TestUnit, how to read merb/dm tests
-
-### What is it?
-
-(TODO) - BDD
-
-### Why test?
-
-(TODO) benefits of testing
-
-### What to test?
-
-(TODO) - how to write good test and what should just trust works
-
-## mocking
-
-(TODO) - What is it and why mock
-## Helpers
-
-(TODO) - what should you use helpers for?
-## Spec'ing Models
-
-(TODO) - How to spec models, use example merb/dm test talk through them, mocking
-## Spec'ing Views
-
-(TODO) - What they should test
-## Spec'ing Controllers
-
-(TODO) - What they should test
 # A little blog
 
-In the examples we'll be developing a small blogging application.
+In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from 
+(TODO) -location, so you can follow along with the examples.
+
 First of all let's define some of the functionality we would expect from any blogging application. 
 
 * Publishing posts
@@ -503,7 +492,9 @@ Now add a config/database.yml file with the following:
       :database: simple_blog_production
       
 Now we're ready to rock and roll ...
-### Models
+## Models
+
+### Getting started
 
 Having discussed the functionality we can deduce that we will need the following models, Post, Comment, Tag, User and Image.
 
@@ -511,31 +502,185 @@ Merb has a model generator just as rails does:
 
     script/generate model post
 
-This is make a post model for you, provide that you have defined an orm and the database simple_blog, in the previous steps.
+This is make a post model for you, provided that you have defined an orm and the database simple_blog, in the previous steps.
 
-So DM models differ a bit from AR models as previously stated. Migrations have been added but we will go through them later on, for new we will define our database fields in our model. Defining database properties is achieved with the property method.
+When you run rake dm:db:auto_migrate, it will create the database table and all the properties, but take care this is a destructive method!
+
+You can set the name of the database table in your model if it is called something different with:
+
+    set_table_name 'list_of_posts'
+    
+This is only necessary if you are using an already existing database.
+
+#### Properties
+
+So DM models differ a bit from AR models as previously stated. Defining the database columns is achieved with the property method.
+
+app/models/post.rb
 
     property :title,      :string,    :lazy => false
     
-This is the title property of the post model. As we can see, the parameters are the name of the property followed by the type and finally the options. 
+This is the title property of the post model. As we can see, the parameters are the name of the table column followed by the type and finally the options. 
 
-(TODO) - property options, explain lazy
-(TODO) - rake task dm:db:auto_migrate
+Some of the available options are:
+
+    :lazy         - Lazy load the specified property (:lazy => true).
+    :default      - Specifies the default value
+    :column       - Specifies the table column
+    :nullable     - Can the value be null?
+    :key          - Set as primary key
+    :index        - Creates a database index for the column
+    :accessor     - Set method visibility for the property accessors. Affects both
+                    reader and writer. Allowable values are :public, :protected, :private.
+    :reader       - Like the accessor option but affects only the property reader.
+    :writer       - Like the accessor option but affects only the property writer.
+    :protected    - Alias for :reader => :public, :writer => :protected
+    :private      - Alias for :reader => :public, :writer => :private
 
 
-(TODO) - custom validation
+#### Associations
+
+Like AR, DM has associations which define relationships between models. Continuing with the Post model we can see a few of the associations defined:
+    
+    has_many :comments
+    belongs_to :author, :class => 'User', :foreign_key => 'author_id'
+    
+You also can have the associations, has\_one and has\_and\_belongs\_to\_many (where you can specify the :join_table).
+    
+Pretty straight forward. A few things you should note however, you do not need to specify the foreign key as a property if it's defined in the association, and currently has\_one is implemented as has\_many (so it returns an array with one object instead of just the object itself, but this is will likely change!).
+
+You also don't have to specify a relationship at all if you don't want to, as models can have one way relationships.
+
+##### Polymorphic associations
+http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
+(TODO) -polly assoc
+
+##### Where is my has\_many :through?!
+has\_many :through is in the pipes, but it is not currently available in DM. You could write your own methods, which mimicked that behaviour.
+    
+    (TODO) -example for hmthrough
+ 
+#### Validation
+
+(TODO) - custom validation, and vaildable gem
+
+#### Callbacks
+
+(TODO) list of available call backs
+
+
+#### Migrations
+
 (TODO) - maybe mention migrations
-(TODO) - Association
-(TODO) - STI, comment on comments?
-(TODO) - http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq polymorphic associations
 
-### Routing
+### CRUD
+
+(TODO) -CRUD
+
+#### Creating
+To create a new record, just call the method new on a model and pass it your attributes.
+
+    @post = Post.new(:title => 'My first post')
+    
+There is also an AR like method to find\_or\_create which attempts to find an object with the attributes provided, and creates the object if it cannot find it.
+
+There is another way to create an object, which is to save it after the attributes have been set like this:
+   
+    @post = Post.new
+    @post.attributes = {:name => 'Hi!',:body => 'This is just awesome!'}
+    @post.save
+    
+#### Reading (aka finding)
+
+The syntax for retrieving data from the database is clean an simple. As you can see with the following examples.
+
+Finding a post with one as its primary key is done with the following:
+
+    Post[1]
+ 
+To get an array of all the records for the post model:
+
+    Post.all
+
+*NOTE*: you can also do Post.find(:all), like the AR syntax but this is just a synonym for Post.all
+
+To get the first post, with the condition author = 'Matt':
+
+    Post.first(:author => 'Matt')
+
+When retrieving data the following parameters can be used:
+
+    #   Posts.all :order => 'created_at desc'              # => ORDER BY created_at desc
+    #   Posts.all :limit => 10                             # => LIMIT 10
+    #   Posts.all :offset => 100                           # => OFFSET 100
+    #   Posts.all :include => [:comments]
+
+If the parameters are not found in these conditions it is assumed to be an attribute of the object.
+
+You can also use symbol operators with the find to specify a condition, for example:
+
+    Posts.all :title.like => '%welcome%', :created_at.lt => Time.now
+
+This would return all the posts, where the tile was like 'welcome' and was created in the past.
+
+Here is a list of the valid operators:
+
+* gt    - greater than
+* lt    - less than
+* gte   - greater than or equal
+* lte   - less than or equal
+* not   - not equal
+* like  - like
+* in    - will be used automatically when an array is passed in as an argument
+    
+If you require a custom find, you can use sql with the method, find\_by\_sql. This will return an array of Structs (which are read-only) with the result of the query. 
+
+##### Count
+
+DM provides a count method to count the number of records of a model, you can also pass search conditions to count:
+
+    comment_count = Post[1].comments.count
+    
+##### Each
+
+(TODO) - Each
+
+DataMapper sports an incredibly powerful each method with safely iterates over large quantities of rows in a table performing the block you pass in. Think of it like a Animal.find(:all).each {} block, but so much easier on your resources. Rather than instantiating all objects and then iterating over them, each works in batches and only instantiates a batch of results at a time, then iterates over items in the batch. Notice how you can pass it options just like a finder.
+
+    1 Animal.each(:species => 'Mammal').each do |a|
+    2   a.reproduce!
+    3 end
+
+#### Updating
+
+    1 zoo.update_attributes(:name => 'Funky Town Municipal Zoo')
+
+
+(TODO) - updating attributes
+(TODO) - Dirty? only updates the changed attributes, so take note for virtual attrs
+
+#### Destroying
+
+You can destroy database records with the method destroy!, this work much like AR.
+ 
+    bad_comment = Comment[6]
+    bad_comment.destroy!
+    
+Should you want to delete all the records of a model, you can do the following:
+
+    Comment.delete_all
+
+
+
+
+
+## Routing
 
 (TODO) - Defining routes, and resources
 (TODO) - Nested routes
 (TODO) - Namespaces
 (TODO) - Show routes, merb.show_routes in merb's irb console (merb -i)
-### Controllers
+## Controllers
 
 (TODO) - filters, how the chaining works and :throw
 (TODO) - how params get passed in controllers
@@ -546,12 +691,21 @@ This is the title property of the post model. As we can see, the parameters are 
 (TODO) - rest
 (TODO) - content_type
 (TODO) - flash?
-### Views
+## Views
 
 (TODO) - form helpers
 (TODO) - mention you can use other template languages
-(TODO) - partial :comment, :with => @post.comments, :as => comments
-### Mailers
+
+### Partials
+
+Use the partial method to render a partial from the current directory. If you pass a hash as the second argument the contents will be made available as local variables in the partial.
+
+    partial :post, {:comments => @post.comments}
+
+To display the latest posts on our blog's front page, we use the :with and :as arguments to render a collection.
+
+    partial :post, :with => @posts, :as => post
+## Mailers
 
 (TODO) - sending mail
 (TODO) - mail templates in /views
@@ -564,6 +718,111 @@ This is the title property of the post model. As we can see, the parameters are 
 (TODO) - attachment_pu
 (TODO) - image resize/crop
 (TODO) - downloading
+# RSpec
+
+When using stubs with RSpec you can roughly categorise the methods you are going to use into two categories. On one side you have the sub! and should_receive methods which refine what methods you expect to be called with what parameters and potentially what they should return in the case of the test being run. On the other side you have assertions which test the output and value or variables. The should method is primarily used when asserting things.
+
+### What is it?
+
+(TODO) - BDD
+
+### Why test?
+
+(TODO) benefits of testing
+
+### What to test?
+
+(TODO) - how to write good test and what should just trust works
+
+## mocking
+
+(TODO) - What is it and why mock
+## Helpers
+
+(TODO) - what should you use helpers for?
+## Spec'ing Models
+
+(TODO) - How to spec models, use example merb/dm test talk through them, mocking
+## Spec'ing Views
+
+(TODO) - What they should test
+## Spec'ing Controllers
+
+### Getting started
+
+Testing controllers typically involves stubbing out some methods, making a fake request and then ensuring the right variables are assigned, exceptions are raised and views rendered.
+
+A good start is testing the show action in our Posts controller.
+
+    class Posts < Application
+      provides :html
+  
+      def show(id)
+        @post = Post[id]
+        render @post
+  
+        rescue DataMapper::ObjectNotFoundError
+        raise NotFound
+      end
+    end
+
+Our first test will ensure that Post[1] is called when /posts/1 is visited, and when the post exists the response code is 200 OK.
+
+    describe Posts, "show action" do
+      it "should find post and render show view" do
+        Post.should_receive(:[]).with("1")
+        get('/posts/1', :yields => :controller) do
+          controller.stub!(:render)
+        end
+        status.should == 200
+      end
+    end
+
+The first should_receive ensures that Post[1] is called, we could mock out a Post instance to return here, but in this case we're only interested in it being called and not raising an exception.
+
+Next we use the get method to make a request to the controller, the :yields option allows us to set what the get request returns. Here we want to grab the controller and then stub out the render method before the request is made. Anything inside you get method's block will be executed before the request is dispatched.
+
+After the request has been dispatched, several methods are available to return the results from the request: body, status, params, cookies, headers, session, response and route. Note that these all just call the same method on controller (so status is the same as controller.status).
+
+This test was fairly simple, and it's likely you won't need to such tests if your controllers are as simple as ours. But once you have more than a few lines in your controller, simple response status checks can be useful for ensuring the overall integrity of your app.
+
+A more important test would be ensuring that a 404 is returned when the post cannot be found in the database. When Datamapper cannot find a record is raises Datamapper::ObjectNotFoundError. Merb has several useful exception classes which will set the correct status and then call the relevant action in your Exceptions controller. Raising NotFound will set the status to 404 and then call the not_found action, which can return a much nicer.
+
+    it "should return 500 if post doesn't exist" do
+      post = mock(Post)
+      Post.should_receive(:[]).with("1").and_raise(DataMapper::ObjectNotFoundError)
+      get('/posts/1')
+      status.should == 404
+    end
+
+Unlike the last test there was no need for us to stub the render method because DataMapper::ObjectNotFoundError is raised before it is reached.
+
+### Testing multipart forms
+
+(TODO: Make and example of uploading assets in the simple blog)
+
+The multipart_post method allows you to include files in a fake request. There must however be an actual file to be opened and submitted. If you put the file in the same directory as your spec, use File.dirname(__FILE__) to ensure the full path is used.
+
+If you are going to open the tempfile which is uploaded, remember to stub out File.open. Watch out though, if you use simply open instead of File.open it won't be the File.open you stubbed out. The other issue here is within the spec we have no way of knowing what the filename of the tempfile is, so we have to assume it's correct and use an_instance_of(String) so any filename is accepted.
+
+(TODO: test code)
+
+    describe Posts, "create action" do 
+        it "should receive file" do
+          File.should_receive(:open).with(an_instance_of(String))
+          multipart_post("/posts", {:image => File.open(File.join( File.dirname(__FILE__), "picture.jpg"))})
+          controller.assigns(:filename).should == "picture.jpg"
+        end
+    end
+
+Your controller would look something like this.
+
+    class Posts < Application
+        def create
+            fp = File.open(params[:image][:tempfile].path)
+            @filename = params[:image][:filename]
+        end
+    end
 ## Caching
 
 (TODO) - session cache

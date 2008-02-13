@@ -2,7 +2,7 @@ class Posts < Application
   provides :html#, :atom (TODO)
   
   def index
-    @posts = Post.all(:order => 'created_at desc') #pagenation
+    @posts = Post.latest
     render @posts
   end
   
@@ -11,6 +11,6 @@ class Posts < Application
     render @post
   
     rescue DataMapper::ObjectNotFoundError
-    raise NotFound unless @post
+    raise NotFound
   end
 end
