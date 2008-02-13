@@ -2,6 +2,8 @@
 
 (TODO) -intro how it compares with TestUnit, how to read merb/dm tests
 
+THis is where teh crazzzzzy shit happens!
+
 ### What is it?
 
 (TODO) - BDD
