@@ -11,9 +11,8 @@ Before we get started I'm going to assume you have the following installed:
 
 If you just want to play around with Merb grab the gem:
     
-    sudo gem install merb -y
+    sudo gem install merb --source http://merbivore.org 
     
-*Windows users see [this post](http://www.ghostonthird.com/2007/11/17/merb-on-windows-it-works/) for the install instructions.*
     
 On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
 and you'll need to install the following gems:
@@ -21,10 +20,15 @@ and you'll need to install the following gems:
     sudo gem install mongrel json_pure erubis mime-types rspec hpricot \
         mocha rubigen haml markaby mailfactory ruby2ruby -y
 
-    (TODO) - git repo for merb trunk 
-    svn co http://svn.devjavu.com/merb/trunk merb && cd merb && rake install
+    git clone git://github.com/wycats/merb-core.git
+    git clone git://github.com/wycats/merb-more.git
+    git clone git://github.com/wycats/merb-plugins.git
+    
+Within each gem run:
 
-Take note that if you need to use JSON you should install the json gem, json_pure is used so merb will install on JRuby.
+    rake install
+
+If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using Datamapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.

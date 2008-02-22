@@ -1,5 +1,17 @@
 ## Routing
 
+Routing is similar to rails 
+
+### Strings/Regex
+
+### Hashes
+
+### Restful Routes
+
+#### Nested Routes
+
+
+### URLs
 (TODO) - Defining routes, and resources
 (TODO) - Nested routes
 (TODO) - Namespaces

@@ -9,11 +9,11 @@ The app folder contains your usual Models, Views and Controllers, Helpers. It al
 
     app
       |--- controllers
-      |--- models
+      |--- models (generated with a model)
       |--- helpers
-      |--- mailers
+      |--- mailers (generated with a mailer)
       |--- helpers
-      |--- parts
+      |--- parts (generated with a parts controller)
       |--- views
 
 The config folder has all the configuration files and environments. It's important to edit the following files in here, dependencies.rb and database.yml before running Merb. The Merb router is defined here too, which map the incoming requests to the controllers (the syntax is not the same as Rails). 
@@ -27,20 +27,12 @@ Lib Folder contains extra stuff, not necessarily loaded on boot, need to add to 
     
     lib
     
-The Log directory contains logs, process id's.
-    
-    log
-    
 Public will hold all your assets, just like rails. 
     
     public
           \--- images
           \--- javascripts
           \--- stylesheets
-    
-Script contains the generators and scripts. Run script/generate --help to see what generators you have available. 
-    
-    script
     
 Spec is for RSpec tests.
     
@@ -53,7 +45,7 @@ Test is for test/unit (same as Rails)
     test
         \--- unit
         
-Gem is there so you can package gems with your application, as plug-ins are gems 
+Gem is there so you can package gems with your application, aka Rails plugins
     
     gems
     

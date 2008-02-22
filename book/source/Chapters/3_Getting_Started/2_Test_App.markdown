@@ -7,61 +7,43 @@ Rails apps (but it's up to you). So at the command line type:
 
     mkdir merb
     cd merb
-    merb example_one
+    merb-gen example_one
     
 This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
 
     # expected output
-    create  
+    create  app
     create  app/controllers
-    create  app/models
     create  app/helpers
-    create  app/mailers/helpers
-    create  app/mailers/views/layout
-    create  app/parts/helpers
-    create  app/parts/views/layout
-    create  app/views/layout
+    create  app/views
     create  app/views/exceptions
+    create  app/views/layout
+    create  config
     create  config/environments
-    create  lib
-    create  log
+    create  public
     create  public/images
-    create  public/javascripts
     create  public/stylesheets
-    create  script
-    create  spec/models
-    create  spec/controllers
-    create  test/unit
-    create  gems
-    create  Rakefile
+    create  spec
     create  app/controllers/application.rb
     create  app/controllers/exceptions.rb
-    create  app/helpers/global_helper.rb
-    create  app/parts/views/layout/application.html.erb
-    create  app/mailers/views/layout/application.html.erb
-    create  app/mailers/views/layout/application.text.erb
-    create  app/views/layout/application.html.erb
+    create  app/helpers/global_helpers.rb
     create  app/views/exceptions/internal_server_error.html.erb
-    create  app/views/exceptions/not_found.html.erb
     create  app/views/exceptions/not_acceptable.html.erb
-    create  public/images/merb.jpg
-    create  public/stylesheets/master.css
-    create  public/merb.fcgi
-    create  config/boot.rb
-    create  config/merb_init.rb
+    create  app/views/exceptions/not_found.html.erb
+    create  app/views/layout/application.html.erb
+    create  config/rack.rb
     create  config/router.rb
-    create  config/upload.conf
-    create  config/dependencies.rb
+    create  config/init.rb
     create  config/environments/development.rb
     create  config/environments/production.rb
     create  config/environments/test.rb
+    create  public/merb.fcgi
+    create  public/images/merb.jpg
+    create  public/stylesheets/master.css
+    create  spec/spec.opts
     create  spec/spec_helper.rb
-    create  test/test_helper.rb
-    create  config/merb.yml
-    create  script/stop_merb
-    create  script/generate
-    create  script/destroy
-    
+    create  /Rakefile
+        
 
     
 ## Configuring Merb
@@ -96,33 +78,13 @@ So create a database.yml file a bit like this one (remember to create the databa
       :host: localhost
 
       
-Starting merb again shows everything is running ok:
-
-    Merb started with these options:
-    --- 
-    :exception_details: true
-    :query_string_whitelist: []
-
-    :port: "4000"
-    :environment: development
-    :session_secret_key: /USERS/WORK/BOOK/MERB_BOOK/CODE/EXAMPLE_ONE2400
-    :reloader_time: 0.5
-    :host: 0.0.0.0
-    :mongrel_x_sendfile: true
-    :reloader: true
-    :cache_templates: false
-    :use_mutex: true
-    :merb_root: /Users/work/book/merb_book/code/example_one
-    :session_id_cookie_only: true
-
-    Started merb_init.rb ...
-    Connecting to database...
-    Loading Application...
-    Compiling routes..
-    Loaded DEVELOPMENT Environment...
-    Not Using Sessions
+Starting merb again shows everything is running ok.
 
 You'll notice Merb runs on port 4000, but this can be changed with flag -p [port number]. More options can be found by typing:
 
     merb --help
+    
+You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
+
+    $ merb -a thin
 

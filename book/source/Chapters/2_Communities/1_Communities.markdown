@@ -30,6 +30,6 @@ The mailing lists are another good way to get help, the response time isn't as f
 
 Your problem may or may not be a known bug, search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases - even better a patch!).
 
-* http://merb.devjavu.com/
+* http://merb.lighthouseapp.com/
 * http://wm.lighthouseapp.com/projects/4819-datamapper/overview
 * http://rspec.lighthouseapp.com/
