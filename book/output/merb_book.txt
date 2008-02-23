@@ -1,74 +1,80 @@
 Life On The Edge With Merb, DataMapper & RSpec
 =================================================
 
-- [Life On The Edge With Merb, DataMapper & RSpec](#contents_anchor_1)
-- [Forward](#contents_anchor_2)
-- [Preface](#contents_anchor_3)
-- [What is Merb, DataMapper & RSpec?](#contents_anchor_4)
-    - [Merb](#contents_anchor_5)
-    - [Datamapper](#contents_anchor_6)
-    - [RSpec](#contents_anchor_7)
-- [What About Ruby On Rails?](#contents_anchor_8)
-- [Communities](#contents_anchor_9)
-    - [Websites](#contents_anchor_10)
-    - [IRC Channels - freenode.net](#contents_anchor_11)
-    - [Mailing Lists](#contents_anchor_12)
-    - [Bug Trackers](#contents_anchor_13)
-- [Getting Started](#contents_anchor_14)
-    - [Installing Merb](#contents_anchor_15)
-    - [Installing Datamapper](#contents_anchor_16)
-    - [Install RSpec](#contents_anchor_17)
-- [Creating an App](#contents_anchor_18)
-    - [Configuring Merb](#contents_anchor_19)
-- [The Framework](#contents_anchor_20)
-- [A little blog](#contents_anchor_21)
-    - [Models](#contents_anchor_22)
-        - [Getting started](#contents_anchor_23)
-            - [Properties](#contents_anchor_24)
-            - [Associations](#contents_anchor_25)
-                - [Polymorphic associations](#contents_anchor_26)
-                - [Where is my has_many :through?!](#contents_anchor_27)
-            - [Validation](#contents_anchor_28)
-            - [Callbacks](#contents_anchor_29)
-            - [Migrations](#contents_anchor_30)
-        - [CRUD](#contents_anchor_31)
-            - [Creating](#contents_anchor_32)
-            - [Reading (aka finding)](#contents_anchor_33)
-                - [Count](#contents_anchor_34)
-                - [Each](#contents_anchor_35)
-            - [Updating](#contents_anchor_36)
-            - [Destroying](#contents_anchor_37)
-    - [Routing](#contents_anchor_38)
-    - [Controllers](#contents_anchor_39)
-    - [Views](#contents_anchor_40)
-        - [Partials](#contents_anchor_41)
-    - [Mailers](#contents_anchor_42)
-    - [Authentication](#contents_anchor_43)
-    - [Attachments](#contents_anchor_44)
-- [RSpec](#contents_anchor_45)
-        - [What is it?](#contents_anchor_46)
-        - [Why test?](#contents_anchor_47)
-        - [What to test?](#contents_anchor_48)
-    - [mocking](#contents_anchor_49)
-    - [Helpers](#contents_anchor_50)
-    - [Spec'ing Models](#contents_anchor_51)
-    - [Spec'ing Views](#contents_anchor_52)
-    - [Spec'ing Controllers](#contents_anchor_53)
-        - [Getting started](#contents_anchor_54)
-        - [Testing multipart forms](#contents_anchor_55)
-    - [Caching](#contents_anchor_56)
-- [Gotchas](#contents_anchor_57)
-    - [Merb](#contents_anchor_58)
-    - [DataMapper](#contents_anchor_59)
-    - [RSpec](#contents_anchor_60)
-- [Submitting a patch](#contents_anchor_61)
-        - [Diffs](#contents_anchor_62)
-        - [Docs](#contents_anchor_63)
-        - [Specs](#contents_anchor_64)
-- [Hacking Merb](#contents_anchor_65)
-    - [ ](#contents_anchor_66)
-    - [Changing the directory structure](#contents_anchor_67)
-- [Deploying a Merb App](#contents_anchor_68)
+- [Life On The Edge With Merb, DataMapper & RSpec](#life_on_the_edge_with_merb_datamapper_rspec)
+- [Forward](#forward)
+- [Preface](#preface)
+- [What is Merb, DataMapper & RSpec?](#what_is_merb_datamapper_rspec_)
+    - [Merb](#merb)
+    - [Datamapper](#datamapper)
+    - [RSpec](#rspec)
+- [What About Ruby On Rails?](#what_about_ruby_on_rails_)
+- [Communities](#communities)
+    - [Websites](#websites)
+    - [IRC Channels - freenode.net](#irc_channels_freenode_net)
+    - [Mailing Lists](#mailing_lists)
+    - [Bug Trackers](#bug_trackers)
+- [Getting Started](#getting_started)
+    - [Installing Merb](#installing_merb)
+    - [Installing Datamapper](#installing_datamapper)
+    - [Install RSpec](#install_rspec)
+- [Creating an App](#creating_an_app)
+    - [Configuring Merb](#configuring_merb)
+- [The Framework](#the_framework)
+- [A little blog](#a_little_blog)
+    - [Models](#models)
+        - [Getting started](#getting_started)
+            - [Properties](#properties)
+            - [Associations](#associations)
+                - [Polymorphic associations](#polymorphic_associations)
+                - [Where is my has_many :through?!](#where_is_my_has_many_through_)
+            - [Validation](#validation)
+            - [Callbacks](#callbacks)
+            - [Migrations](#migrations)
+        - [CRUD](#crud)
+            - [Creating](#creating)
+            - [Reading (aka finding)](#reading_aka_finding_)
+                - [Count](#count)
+                - [Each](#each)
+            - [Updating](#updating)
+            - [Destroying](#destroying)
+    - [Routing](#routing)
+        - [Strings/Regex](#strings_regex)
+        - [Hashes](#hashes)
+        - [Restful Routes](#restful_routes)
+            - [Nested Routes](#nested_routes)
+        - [URLs](#urls)
+    - [Controllers](#controllers)
+    - [Views](#views)
+        - [Partials](#partials)
+    - [Mailers](#mailers)
+    - [Authentication](#authentication)
+    - [Attachments](#attachments)
+- [RSpec](#rspec)
+        - [What is it?](#what_is_it_)
+        - [Why test?](#why_test_)
+        - [What to test?](#what_to_test_)
+    - [mocking](#)
+    - [Helpers](#helpers)
+    - [Spec'ing Models](#spec_ing_models)
+    - [Spec'ing Views](#spec_ing_views)
+    - [Spec'ing Controllers](#spec_ing_controllers)
+        - [Getting started](#getting_started)
+        - [Testing multipart forms](#testing_multipart_forms)
+        - [More ways to dispatch a request](#more_ways_to_dispatch_a_request)
+    - [Caching](#caching)
+- [Gotchas](#gotchas)
+    - [Merb](#merb)
+    - [DataMapper](#datamapper)
+    - [RSpec](#rspec)
+- [Submitting a patch](#submitting_a_patch)
+        - [Diffs](#diffs)
+        - [Docs](#docs)
+        - [Specs](#specs)
+- [Hacking Merb](#hacking_merb)
+    - [ ](#)
+    - [Changing the directory structure](#changing_the_directory_structure)
+- [Deploying a Merb App](#deploying_a_merb_app)
 
 # Life On The Edge With Merb, DataMapper & RSpec
 # Forward
@@ -190,7 +196,7 @@ The mailing lists are another good way to get help, the response time isn't as f
 
 Your problem may or may not be a known bug, search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases - even better a patch!).
 
-* http://merb.devjavu.com/
+* http://merb.lighthouseapp.com/
 * http://wm.lighthouseapp.com/projects/4819-datamapper/overview
 * http://rspec.lighthouseapp.com/
 
@@ -207,9 +213,8 @@ Before we get started I'm going to assume you have the following installed:
 
 If you just want to play around with Merb grab the gem:
     
-    sudo gem install merb -y
+    sudo gem install merb --source http://merbivore.org 
     
-*Windows users see [this post](http://www.ghostonthird.com/2007/11/17/merb-on-windows-it-works/) for the install instructions.*
     
 On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
 and you'll need to install the following gems:
@@ -217,10 +222,15 @@ and you'll need to install the following gems:
     sudo gem install mongrel json_pure erubis mime-types rspec hpricot \
         mocha rubigen haml markaby mailfactory ruby2ruby -y
 
-    (TODO) - git repo for merb trunk 
-    svn co http://svn.devjavu.com/merb/trunk merb && cd merb && rake install
+    git clone git://github.com/wycats/merb-core.git
+    git clone git://github.com/wycats/merb-more.git
+    git clone git://github.com/wycats/merb-plugins.git
+    
+Within each gem run:
 
-Take note that if you need to use JSON you should install the json gem, json_pure is used so merb will install on JRuby.
+    rake install
+
+If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.
 
 Merb is ORM agnostic, but as the title of this book suggests we'll be using Datamapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
@@ -261,61 +271,43 @@ Rails apps (but it's up to you). So at the command line type:
 
     mkdir merb
     cd merb
-    merb example_one
+    merb-gen example_one
     
 This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
 
     # expected output
-    create  
+    create  app
     create  app/controllers
-    create  app/models
     create  app/helpers
-    create  app/mailers/helpers
-    create  app/mailers/views/layout
-    create  app/parts/helpers
-    create  app/parts/views/layout
-    create  app/views/layout
+    create  app/views
     create  app/views/exceptions
+    create  app/views/layout
+    create  config
     create  config/environments
-    create  lib
-    create  log
+    create  public
     create  public/images
-    create  public/javascripts
     create  public/stylesheets
-    create  script
-    create  spec/models
-    create  spec/controllers
-    create  test/unit
-    create  gems
-    create  Rakefile
+    create  spec
     create  app/controllers/application.rb
     create  app/controllers/exceptions.rb
-    create  app/helpers/global_helper.rb
-    create  app/parts/views/layout/application.html.erb
-    create  app/mailers/views/layout/application.html.erb
-    create  app/mailers/views/layout/application.text.erb
-    create  app/views/layout/application.html.erb
+    create  app/helpers/global_helpers.rb
     create  app/views/exceptions/internal_server_error.html.erb
-    create  app/views/exceptions/not_found.html.erb
     create  app/views/exceptions/not_acceptable.html.erb
-    create  public/images/merb.jpg
-    create  public/stylesheets/master.css
-    create  public/merb.fcgi
-    create  config/boot.rb
-    create  config/merb_init.rb
+    create  app/views/exceptions/not_found.html.erb
+    create  app/views/layout/application.html.erb
+    create  config/rack.rb
     create  config/router.rb
-    create  config/upload.conf
-    create  config/dependencies.rb
+    create  config/init.rb
     create  config/environments/development.rb
     create  config/environments/production.rb
     create  config/environments/test.rb
+    create  public/merb.fcgi
+    create  public/images/merb.jpg
+    create  public/stylesheets/master.css
+    create  spec/spec.opts
     create  spec/spec_helper.rb
-    create  test/test_helper.rb
-    create  config/merb.yml
-    create  script/stop_merb
-    create  script/generate
-    create  script/destroy
-    
+    create  /Rakefile
+        
 
     
 ## Configuring Merb
@@ -350,35 +342,15 @@ So create a database.yml file a bit like this one (remember to create the databa
       :host: localhost
 
       
-Starting merb again shows everything is running ok:
-
-    Merb started with these options:
-    --- 
-    :exception_details: true
-    :query_string_whitelist: []
-
-    :port: "4000"
-    :environment: development
-    :session_secret_key: /USERS/WORK/BOOK/MERB_BOOK/CODE/EXAMPLE_ONE2400
-    :reloader_time: 0.5
-    :host: 0.0.0.0
-    :mongrel_x_sendfile: true
-    :reloader: true
-    :cache_templates: false
-    :use_mutex: true
-    :merb_root: /Users/work/book/merb_book/code/example_one
-    :session_id_cookie_only: true
-
-    Started merb_init.rb ...
-    Connecting to database...
-    Loading Application...
-    Compiling routes..
-    Loaded DEVELOPMENT Environment...
-    Not Using Sessions
+Starting merb again shows everything is running ok.
 
 You'll notice Merb runs on port 4000, but this can be changed with flag -p [port number]. More options can be found by typing:
 
     merb --help
+    
+You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
+
+    $ merb -a thin
 
 
 # The Framework
@@ -392,11 +364,11 @@ The app folder contains your usual Models, Views and Controllers, Helpers. It al
 
     app
       |--- controllers
-      |--- models
+      |--- models (generated with a model)
       |--- helpers
-      |--- mailers
+      |--- mailers (generated with a mailer)
       |--- helpers
-      |--- parts
+      |--- parts (generated with a parts controller)
       |--- views
 
 The config folder has all the configuration files and environments. It's important to edit the following files in here, dependencies.rb and database.yml before running Merb. The Merb router is defined here too, which map the incoming requests to the controllers (the syntax is not the same as Rails). 
@@ -410,20 +382,12 @@ Lib Folder contains extra stuff, not necessarily loaded on boot, need to add to 
     
     lib
     
-The Log directory contains logs, process id's.
-    
-    log
-    
 Public will hold all your assets, just like rails. 
     
     public
           \--- images
           \--- javascripts
           \--- stylesheets
-    
-Script contains the generators and scripts. Run script/generate --help to see what generators you have available. 
-    
-    script
     
 Spec is for RSpec tests.
     
@@ -436,7 +400,7 @@ Test is for test/unit (same as Rails)
     test
         \--- unit
         
-Gem is there so you can package gems with your application, as plug-ins are gems 
+Gem is there so you can package gems with your application, aka Rails plugins
     
     gems
     
@@ -676,10 +640,23 @@ Should you want to delete all the records of a model, you can do the following:
 
 ## Routing
 
+Routing is similar to rails 
+
+### Strings/Regex
+
+### Hashes
+
+### Restful Routes
+
+#### Nested Routes
+
+
+### URLs
 (TODO) - Defining routes, and resources
 (TODO) - Nested routes
 (TODO) - Namespaces
 (TODO) - Show routes, merb.show_routes in merb's irb console (merb -i)
+
 ## Controllers
 
 (TODO) - filters, how the chaining works and :throw
@@ -823,6 +800,10 @@ Your controller would look something like this.
             @filename = params[:image][:filename]
         end
     end
+
+### More ways to dispatch a request
+
+There are several other ways to dispatch a request in your test.
 ## Caching
 
 (TODO) - session cache

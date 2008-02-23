@@ -11,120 +11,130 @@
 
 <body>
 
-<h1>Life On The Edge With Merb, DataMapper &amp; RSpec</h1>
+<h1 id="life_on_the_edge_with_merb_datamapper_rspec">Life On The Edge With Merb, DataMapper &amp; RSpec</h1>
 
 <ul>
-<li><a href="#contents_anchor_1">Life On The Edge With Merb, DataMapper &amp; RSpec</a></li>
-<li><a href="#contents_anchor_2">Forward</a></li>
-<li><a href="#contents_anchor_3">Preface</a></li>
-<li><a href="#contents_anchor_4">What is Merb, DataMapper &amp; RSpec?</a>
+<li><a href="#life_on_the_edge_with_merb_datamapper_rspec">Life On The Edge With Merb, DataMapper &amp; RSpec</a></li>
+<li><a href="#forward">Forward</a></li>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#what_is_merb_datamapper_rspec_">What is Merb, DataMapper &amp; RSpec?</a>
 <ul>
-<li><a href="#contents_anchor_5">Merb</a></li>
-<li><a href="#contents_anchor_6">Datamapper</a></li>
-<li><a href="#contents_anchor_7">RSpec</a></li>
+<li><a href="#merb">Merb</a></li>
+<li><a href="#datamapper">Datamapper</a></li>
+<li><a href="#rspec">RSpec</a></li>
 </ul></li>
-<li><a href="#contents_anchor_8">What About Ruby On Rails?</a></li>
-<li><a href="#contents_anchor_9">Communities</a>
+<li><a href="#what_about_ruby_on_rails_">What About Ruby On Rails?</a></li>
+<li><a href="#communities">Communities</a>
 <ul>
-<li><a href="#contents_anchor_10">Websites</a></li>
-<li><a href="#contents_anchor_11">IRC Channels - freenode.net</a></li>
-<li><a href="#contents_anchor_12">Mailing Lists</a></li>
-<li><a href="#contents_anchor_13">Bug Trackers</a></li>
+<li><a href="#websites">Websites</a></li>
+<li><a href="#irc_channels_freenode_net">IRC Channels - freenode.net</a></li>
+<li><a href="#mailing_lists">Mailing Lists</a></li>
+<li><a href="#bug_trackers">Bug Trackers</a></li>
 </ul></li>
-<li><a href="#contents_anchor_14">Getting Started</a>
+<li><a href="#getting_started">Getting Started</a>
 <ul>
-<li><a href="#contents_anchor_15">Installing Merb</a></li>
-<li><a href="#contents_anchor_16">Installing Datamapper</a></li>
-<li><a href="#contents_anchor_17">Install RSpec</a></li>
+<li><a href="#installing_merb">Installing Merb</a></li>
+<li><a href="#installing_datamapper">Installing Datamapper</a></li>
+<li><a href="#install_rspec">Install RSpec</a></li>
 </ul></li>
-<li><a href="#contents_anchor_18">Creating an App</a>
+<li><a href="#creating_an_app">Creating an App</a>
 <ul>
-<li><a href="#contents_anchor_19">Configuring Merb</a></li>
+<li><a href="#configuring_merb">Configuring Merb</a></li>
 </ul></li>
-<li><a href="#contents_anchor_20">The Framework</a></li>
-<li><a href="#contents_anchor_21">A little blog</a>
+<li><a href="#the_framework">The Framework</a></li>
+<li><a href="#a_little_blog">A little blog</a>
 <ul>
-<li><a href="#contents_anchor_22">Models</a>
+<li><a href="#models">Models</a>
 <ul>
-<li><a href="#contents_anchor_23">Getting started</a>
+<li><a href="#getting_started">Getting started</a>
 <ul>
-<li><a href="#contents_anchor_24">Properties</a></li>
-<li><a href="#contents_anchor_25">Associations</a>
+<li><a href="#properties">Properties</a></li>
+<li><a href="#associations">Associations</a>
 <ul>
-<li><a href="#contents_anchor_26">Polymorphic associations</a></li>
-<li><a href="#contents_anchor_27">Where is my has_many :through?!</a></li>
+<li><a href="#polymorphic_associations">Polymorphic associations</a></li>
+<li><a href="#where_is_my_has_many_through_">Where is my has_many :through?!</a></li>
 </ul></li>
-<li><a href="#contents_anchor_28">Validation</a></li>
-<li><a href="#contents_anchor_29">Callbacks</a></li>
-<li><a href="#contents_anchor_30">Migrations</a></li>
+<li><a href="#validation">Validation</a></li>
+<li><a href="#callbacks">Callbacks</a></li>
+<li><a href="#migrations">Migrations</a></li>
 </ul></li>
-<li><a href="#contents_anchor_31">CRUD</a>
+<li><a href="#crud">CRUD</a>
 <ul>
-<li><a href="#contents_anchor_32">Creating</a></li>
-<li><a href="#contents_anchor_33">Reading (aka finding)</a>
+<li><a href="#creating">Creating</a></li>
+<li><a href="#reading_aka_finding_">Reading (aka finding)</a>
 <ul>
-<li><a href="#contents_anchor_34">Count</a></li>
-<li><a href="#contents_anchor_35">Each</a></li>
+<li><a href="#count">Count</a></li>
+<li><a href="#each">Each</a></li>
 </ul></li>
-<li><a href="#contents_anchor_36">Updating</a></li>
-<li><a href="#contents_anchor_37">Destroying</a></li>
+<li><a href="#updating">Updating</a></li>
+<li><a href="#destroying">Destroying</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#contents_anchor_38">Routing</a></li>
-<li><a href="#contents_anchor_39">Controllers</a></li>
-<li><a href="#contents_anchor_40">Views</a>
+<li><a href="#routing">Routing</a>
 <ul>
-<li><a href="#contents_anchor_41">Partials</a></li>
-</ul></li>
-<li><a href="#contents_anchor_42">Mailers</a></li>
-<li><a href="#contents_anchor_43">Authentication</a></li>
-<li><a href="#contents_anchor_44">Attachments</a></li>
-</ul></li>
-<li><a href="#contents_anchor_45">RSpec</a>
-    - <a href="#contents_anchor_46">What is it?</a>
-    - <a href="#contents_anchor_47">Why test?</a>
-    - <a href="#contents_anchor_48">What to test?</a>
+<li><a href="#strings_regex">Strings/Regex</a></li>
+<li><a href="#hashes">Hashes</a></li>
+<li><a href="#restful_routes">Restful Routes</a>
 <ul>
-<li><a href="#contents_anchor_49">mocking</a></li>
-<li><a href="#contents_anchor_50">Helpers</a></li>
-<li><a href="#contents_anchor_51">Spec'ing Models</a></li>
-<li><a href="#contents_anchor_52">Spec'ing Views</a></li>
-<li><a href="#contents_anchor_53">Spec'ing Controllers</a>
+<li><a href="#nested_routes">Nested Routes</a></li>
+</ul></li>
+<li><a href="#urls">URLs</a></li>
+</ul></li>
+<li><a href="#controllers">Controllers</a></li>
+<li><a href="#views">Views</a>
 <ul>
-<li><a href="#contents_anchor_54">Getting started</a></li>
-<li><a href="#contents_anchor_55">Testing multipart forms</a></li>
+<li><a href="#partials">Partials</a></li>
 </ul></li>
-<li><a href="#contents_anchor_56">Caching</a></li>
+<li><a href="#mailers">Mailers</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#attachments">Attachments</a></li>
 </ul></li>
-<li><a href="#contents_anchor_57">Gotchas</a>
+<li><a href="#rspec">RSpec</a>
+    - <a href="#what_is_it_">What is it?</a>
+    - <a href="#why_test_">Why test?</a>
+    - <a href="#what_to_test_">What to test?</a>
 <ul>
-<li><a href="#contents_anchor_58">Merb</a></li>
-<li><a href="#contents_anchor_59">DataMapper</a></li>
-<li><a href="#contents_anchor_60">RSpec</a></li>
-</ul></li>
-<li><a href="#contents_anchor_61">Submitting a patch</a>
-    - <a href="#contents_anchor_62">Diffs</a>
-    - <a href="#contents_anchor_63">Docs</a>
-    - <a href="#contents_anchor_64">Specs</a></li>
-<li><a href="#contents_anchor_65">Hacking Merb</a>
+<li><a href="#">mocking</a></li>
+<li><a href="#helpers">Helpers</a></li>
+<li><a href="#spec_ing_models">Spec'ing Models</a></li>
+<li><a href="#spec_ing_views">Spec'ing Views</a></li>
+<li><a href="#spec_ing_controllers">Spec'ing Controllers</a>
 <ul>
-<li><a href="#contents_anchor_66"> </a></li>
-<li><a href="#contents_anchor_67">Changing the directory structure</a></li>
+<li><a href="#getting_started">Getting started</a></li>
+<li><a href="#testing_multipart_forms">Testing multipart forms</a></li>
+<li><a href="#more_ways_to_dispatch_a_request">More ways to dispatch a request</a></li>
 </ul></li>
-<li><a href="#contents_anchor_68">Deploying a Merb App</a></li>
+<li><a href="#caching">Caching</a></li>
+</ul></li>
+<li><a href="#gotchas">Gotchas</a>
+<ul>
+<li><a href="#merb">Merb</a></li>
+<li><a href="#datamapper">DataMapper</a></li>
+<li><a href="#rspec">RSpec</a></li>
+</ul></li>
+<li><a href="#submitting_a_patch">Submitting a patch</a>
+    - <a href="#diffs">Diffs</a>
+    - <a href="#docs">Docs</a>
+    - <a href="#specs">Specs</a></li>
+<li><a href="#hacking_merb">Hacking Merb</a>
+<ul>
+<li><a href="#"> </a></li>
+<li><a href="#changing_the_directory_structure">Changing the directory structure</a></li>
+</ul></li>
+<li><a href="#deploying_a_merb_app">Deploying a Merb App</a></li>
 </ul>
 
-<h1>Life On The Edge With Merb, DataMapper &amp; RSpec</h1>
+<h1 id="life_on_the_edge_with_merb_datamapper_rspec">Life On The Edge With Merb, DataMapper &amp; RSpec</h1>
 
-<h1>Forward</h1>
+<h1 id="forward">Forward</h1>
 
 <p>(TODO) the forward</p>
 
-<h1>Preface</h1>
+<h1 id="preface">Preface</h1>
 
 <p>At New Bamboo we've been building our internal applications in Merb for quite some time now. This is a collaborative effort to document the features of Merb and DataMapper, while also providing an example Merb application.  </p>
 
-<p><strong><em>Who is this for?</strong></em></p>
+<p><strong><em>Who is this for?</em></strong></p>
 
 <p>The target reader is someone who has some experience with writing Ruby on Rails applications, and is looking to try out a new framework. So if your looking for the <a href="http://www.pragprog.com/titles/rails2">AWDR</a> equivalent for Merb, you may be disappointed as not all topics will be covered.</p>
 
@@ -140,10 +150,10 @@
 </ul>
 
 <p><br />
-This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/">Creative Commons Attribution-Noncommercial 2.0 UK: England &amp; Wales License</a>.<a rel="license" href="http://creativecommons.org/licenses/by-nc/2.0/uk/"></p>
+This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc/2.0/uk/" rel="license">Creative Commons Attribution-Noncommercial 2.0 UK: England &amp; Wales License</a>.<a href="http://creativecommons.org/licenses/by-nc/2.0/uk/" rel="license"></a></p>
 
-<p><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/2.0/uk/88x31.png" />
-</a></p>
+<p><img src="http://i.creativecommons.org/l/by-nc/2.0/uk/88x31.png" alt="Creative Commons License" style="border-width:0" />
+</p>
 
 <p>Source code is dual licensed under the MIT and GPL licenses:</p>
 
@@ -152,7 +162,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li>http://www.gnu.org/licenses/gpl.html</li>
 </ul>
 
-<h1>What is Merb, DataMapper &amp; RSpec?</h1>
+<h1 id="what_is_merb_datamapper_rspec_">What is Merb, DataMapper &amp; RSpec?</h1>
 
 <blockquote>
     <p>If you're not living on the edge, you're taking up too much room. - Alice Bartlett</p>
@@ -160,7 +170,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 
 <p>Merb (Mongrel + ERB), DataMapper and RSpec are all open source projects, which can be used for building kick-ass web applications. As they are in active development, it can be hard to keep up, but we'll try our best to keep up to date.</p>
 
-<h2>Merb</h2>
+<h2 id="merb">Merb</h2>
 
 <p>Merb is a bit like Ruby on Rails, as they both are frameworks for building web applications. It's a relatively new framework and was created by <a href="http://brainspl.at/">Ezra Zygmuntowicz</a>.</p>
 
@@ -172,7 +182,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 
 <p>You might be wondering what's the benefit of this? Well merb-core can be used as an upload server, provide an api or as simple web app (a la <a href="http://code.whytheluckystiff.net/camping/">camping</a>) where the functionality of a fully fledged framework isn't necessary. It also supports the <a href="http://rack.rubyforge.org/">rack webserver interface</a> so you can use any web server that has rack support (mongrel, thin, etc.) </p>
 
-<h2>Datamapper</h2>
+<h2 id="datamapper">Datamapper</h2>
 
 <p>DataMapper is a Object-Relational Mapper (ORM) written in Ruby, created by Sam Smoot and is what we'll be using with Merb, you could use the same ORM Rails uses (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.</p>
 
@@ -180,11 +190,11 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 
 <p>DataMapper has some similarities with ActiveRecord but we will highlight the differences as we go along.</p>
 
-<h2>RSpec</h2>
+<h2 id="rspec">RSpec</h2>
 
 <p>(TODO) intro to RSpec</p>
 
-<h1>What About Ruby On Rails?</h1>
+<h1 id="what_about_ruby_on_rails_">What About Ruby On Rails?</h1>
 
 <blockquote>
     <p>[Merb is] Harder, Better, Faster, Stronger, to quote Daft Punk - Max Williams</p>
@@ -211,11 +221,11 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li>http://wisteria.swiftcore.org/</li>
 </ul>
 
-<h1>Communities</h1>
+<h1 id="communities">Communities</h1>
 
 <p>None of this would be possible without the help of the fantastic communities around these open source projects so instead of being tucked away in the appendix here is how to get involved with them.</p>
 
-<h2>Websites</h2>
+<h2 id="websites">Websites</h2>
 
 <p>These are the first places to go for help, check out the apis and see if you can find your answer there.</p>
 
@@ -225,7 +235,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li>http://rspec.info/</li>
 </ul>
 
-<h2>IRC Channels - freenode.net</h2>
+<h2 id="irc_channels_freenode_net">IRC Channels - freenode.net</h2>
 
 <p>If you can't find what you were looking for in the apis then you could join the respective irc channel and ask your question in there. </p>
 
@@ -235,7 +245,7 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li>#rspec</li>
 </ul>
 
-<h2>Mailing Lists</h2>
+<h2 id="mailing_lists">Mailing Lists</h2>
 
 <p>The mailing lists are another good way to get help, the response time isn't as fast as asking in an irc channel but it can be useful to do a search to see if someone else has had your problem before.</p>
 
@@ -245,17 +255,17 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li>http://rubyforge.org/pipermail/rspec-users/</li>
 </ul>
 
-<h2>Bug Trackers</h2>
+<h2 id="bug_trackers">Bug Trackers</h2>
 
 <p>Your problem may or may not be a known bug, search the bug trackers and submit a ticket if its not there already (don't forget to include a description and test cases - even better a patch!).</p>
 
 <ul>
-<li>http://merb.devjavu.com/</li>
+<li>http://merb.lighthouseapp.com/</li>
 <li>http://wm.lighthouseapp.com/projects/4819-datamapper/overview</li>
 <li>http://rspec.lighthouseapp.com/</li>
 </ul>
 
-<h1>Getting Started</h1>
+<h1 id="getting_started">Getting Started</h1>
 
 <p>Before we get started I'm going to assume you have the following installed:</p>
 
@@ -265,14 +275,12 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 <li><a href="http://subversion.tigris.org/">SVN</a> and <a href="http://git.or.cz/">git</a> (if you want to get the source code)</li>
 </ul>
 
-<h2>Installing Merb</h2>
+<h2 id="installing_merb">Installing Merb</h2>
 
 <p>If you just want to play around with Merb grab the gem:</p>
 
-<pre><code>sudo gem install merb -y
+<pre><code>sudo gem install merb --source http://merbivore.org
 </code></pre>
-
-<p><em>Windows users see <a href="http://www.ghostonthird.com/2007/11/17/merb-on-windows-it-works/">this post</a> for the install instructions.</em></p>
 
 <p>On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
 and you'll need to install the following gems:</p>
@@ -280,16 +288,22 @@ and you'll need to install the following gems:</p>
 <pre><code>sudo gem install mongrel json_pure erubis mime-types rspec hpricot \
     mocha rubigen haml markaby mailfactory ruby2ruby -y
 
-(TODO) - git repo for merb trunk 
-svn co http://svn.devjavu.com/merb/trunk merb &amp;&amp; cd merb &amp;&amp; rake install
+git clone git://github.com/wycats/merb-core.git
+git clone git://github.com/wycats/merb-more.git
+git clone git://github.com/wycats/merb-plugins.git
 </code></pre>
 
-<p>Take note that if you need to use JSON you should install the json gem, json_pure is used so merb will install on JRuby.</p>
+<p>Within each gem run:</p>
+
+<pre><code>rake install
+</code></pre>
+
+<p>If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.</p>
 
 <p>Merb is ORM agnostic, but as the title of this book suggests we'll be using Datamapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the <a href="http://merb.rubyforge.org/files/README.html">merb documentation</a> for install instructions.</p>
 
-<h2>Installing Datamapper</h2>
+<h2 id="installing_datamapper">Installing Datamapper</h2>
 
 <pre><code>sudo gem install merb_datamapper
 sudo gem install data_objects
@@ -308,7 +322,7 @@ sudo env PATH=/usr/local/mysql/bin:$PATH gem update do_mysql -- \
     --with-mysql-dir=/usr/local/mysql
 </code></pre>
 
-<h2>Install RSpec</h2>
+<h2 id="install_rspec">Install RSpec</h2>
 
 <p>To install the gem, or get the source from trunk:</p>
 
@@ -316,7 +330,7 @@ sudo env PATH=/usr/local/mysql/bin:$PATH gem update do_mysql -- \
 svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
 </code></pre>
 
-<h1>Creating an App</h1>
+<h1 id="creating_an_app">Creating an App</h1>
 
 <p>Right now that we've got all of that installed, time to create some test Merb application. Merb follows the same naming convention for projects that rails does, so 'my_test_app' and 'Test2' for example are valid names but 'T 3' is not, as they need to be valid SQL table names.</p>
 
@@ -325,64 +339,46 @@ Rails apps (but it's up to you). So at the command line type:</p>
 
 <pre><code>mkdir merb
 cd merb
-merb example_one
+merb-gen example_one
 </code></pre>
 
 <p>This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.</p>
 
 <pre><code># expected output
-create  
+create  app
 create  app/controllers
-create  app/models
 create  app/helpers
-create  app/mailers/helpers
-create  app/mailers/views/layout
-create  app/parts/helpers
-create  app/parts/views/layout
-create  app/views/layout
+create  app/views
 create  app/views/exceptions
+create  app/views/layout
+create  config
 create  config/environments
-create  lib
-create  log
+create  public
 create  public/images
-create  public/javascripts
 create  public/stylesheets
-create  script
-create  spec/models
-create  spec/controllers
-create  test/unit
-create  gems
-create  Rakefile
+create  spec
 create  app/controllers/application.rb
 create  app/controllers/exceptions.rb
-create  app/helpers/global_helper.rb
-create  app/parts/views/layout/application.html.erb
-create  app/mailers/views/layout/application.html.erb
-create  app/mailers/views/layout/application.text.erb
-create  app/views/layout/application.html.erb
+create  app/helpers/global_helpers.rb
 create  app/views/exceptions/internal_server_error.html.erb
-create  app/views/exceptions/not_found.html.erb
 create  app/views/exceptions/not_acceptable.html.erb
-create  public/images/merb.jpg
-create  public/stylesheets/master.css
-create  public/merb.fcgi
-create  config/boot.rb
-create  config/merb_init.rb
+create  app/views/exceptions/not_found.html.erb
+create  app/views/layout/application.html.erb
+create  config/rack.rb
 create  config/router.rb
-create  config/upload.conf
-create  config/dependencies.rb
+create  config/init.rb
 create  config/environments/development.rb
 create  config/environments/production.rb
 create  config/environments/test.rb
+create  public/merb.fcgi
+create  public/images/merb.jpg
+create  public/stylesheets/master.css
+create  spec/spec.opts
 create  spec/spec_helper.rb
-create  test/test_helper.rb
-create  config/merb.yml
-create  script/stop_merb
-create  script/generate
-create  script/destroy
+create  /Rakefile
 </code></pre>
 
-<h2>Configuring Merb</h2>
+<h2 id="configuring_merb">Configuring Merb</h2>
 
 <p>Right so lets try and get the server running, before we do that you'll need to edit the dependencies.rb 
 file so un-comment the following lines (this is only necessary if you need to connect to a database):</p>
@@ -415,54 +411,34 @@ So create a database.yml file a bit like this one (remember to create the databa
   :host: localhost
 </code></pre>
 
-<p>Starting merb again shows everything is running ok:</p>
-
-<pre><code>Merb started with these options:
---- 
-:exception_details: true
-:query_string_whitelist: []
-
-:port: "4000"
-:environment: development
-:session_secret_key: /USERS/WORK/BOOK/MERB_BOOK/CODE/EXAMPLE_ONE2400
-:reloader_time: 0.5
-:host: 0.0.0.0
-:mongrel_x_sendfile: true
-:reloader: true
-:cache_templates: false
-:use_mutex: true
-:merb_root: /Users/work/book/merb_book/code/example_one
-:session_id_cookie_only: true
-
-Started merb_init.rb ...
-Connecting to database...
-Loading Application...
-Compiling routes..
-Loaded DEVELOPMENT Environment...
-Not Using Sessions
-</code></pre>
+<p>Starting merb again shows everything is running ok.</p>
 
 <p>You'll notice Merb runs on port 4000, but this can be changed with flag -p [port number]. More options can be found by typing:</p>
 
 <pre><code>merb --help
 </code></pre>
 
-<h1>The Framework</h1>
+<p>You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):</p>
+
+<pre><code>$ merb -a thin
+</code></pre>
+
+<h1 id="the_framework">The Framework</h1>
 
 <p>Lets take a closer look at the directory structure that we've just created. I'll give brief overview of the framework here and go into further details of each component in subsequent chapters.</p>
 
 <p>(TODO) - book:publish to add image
-<img src="dir.jpg" alt="Directory Stucture"/></p>
+<img src="dir.jpg" alt="Directory Stucture" /></p>
 
 <p>The app folder contains your usual Models, Views and Controllers, Helpers. It also has Parts (they inherit from AbstractController), similar to the old Rails components, but are lightweight and are useful for sidebars, widgets etc. Mailers (which also inherit from the AbstractController) have their own folder where the controllers and views live. </p>
 
 <pre><code>app
   |--- controllers
-  |--- models
+  |--- models (generated with a model)
   |--- helpers
-  |--- mailers
+  |--- mailers (generated with a mailer)
   |--- helpers
-  |--- parts
+  |--- parts (generated with a parts controller)
   |--- views
 </code></pre>
 
@@ -479,22 +455,12 @@ Not Using Sessions
 <pre><code>lib
 </code></pre>
 
-<p>The Log directory contains logs, process id's.</p>
-
-<pre><code>log
-</code></pre>
-
 <p>Public will hold all your assets, just like rails. </p>
 
 <pre><code>public
       \--- images
       \--- javascripts
       \--- stylesheets
-</code></pre>
-
-<p>Script contains the generators and scripts. Run script/generate --help to see what generators you have available. </p>
-
-<pre><code>script
 </code></pre>
 
 <p>Spec is for RSpec tests.</p>
@@ -510,14 +476,14 @@ Not Using Sessions
     \--- unit
 </code></pre>
 
-<p>Gem is there so you can package gems with your application, as plug-ins are gems </p>
+<p>Gem is there so you can package gems with your application, aka Rails plugins</p>
 
 <pre><code>gems
 </code></pre>
 
 <p>Unlike Rails there is no db, doc or vendor directory when generating an empty app.</p>
 
-<h1>A little blog</h1>
+<h1 id="a_little_blog">A little blog</h1>
 
 <p>In the examples we'll be developing a small blogging application. It's a good idea to grab the source code from 
 (TODO) -location, so you can follow along with the examples.</p>
@@ -573,9 +539,9 @@ dependencies 'linguistics'
 
 <p>Now we're ready to rock and roll ...</p>
 
-<h2>Models</h2>
+<h2 id="models">Models</h2>
 
-<h3>Getting started</h3>
+<h3 id="getting_started">Getting started</h3>
 
 <p>Having discussed the functionality we can deduce that we will need the following models, Post, Comment, Tag, User and Image.</p>
 
@@ -595,7 +561,7 @@ dependencies 'linguistics'
 
 <p>This is only necessary if you are using an already existing database.</p>
 
-<h4>Properties</h4>
+<h4 id="properties">Properties</h4>
 
 <p>So DM models differ a bit from AR models as previously stated. Defining the database columns is achieved with the property method.</p>
 
@@ -622,7 +588,7 @@ dependencies 'linguistics'
 :private      - Alias for :reader =&gt; :public, :writer =&gt; :private
 </code></pre>
 
-<h4>Associations</h4>
+<h4 id="associations">Associations</h4>
 
 <p>Like AR, DM has associations which define relationships between models. Continuing with the Post model we can see a few of the associations defined:</p>
 
@@ -636,35 +602,35 @@ belongs_to :author, :class =&gt; 'User', :foreign_key =&gt; 'author_id'
 
 <p>You also don't have to specify a relationship at all if you don't want to, as models can have one way relationships.</p>
 
-<h5>Polymorphic associations</h5>
+<h5 id="polymorphic_associations">Polymorphic associations</h5>
 
 <p>http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
 (TODO) -polly assoc</p>
 
-<h5>Where is my has_many :through?!</h5>
+<h5 id="where_is_my_has_many_through_">Where is my has_many :through?!</h5>
 
 <p>has_many :through is in the pipes, but it is not currently available in DM. You could write your own methods, which mimicked that behaviour.</p>
 
 <pre><code>(TODO) -example for hmthrough
 </code></pre>
 
-<h4>Validation</h4>
+<h4 id="validation">Validation</h4>
 
 <p>(TODO) - custom validation, and vaildable gem</p>
 
-<h4>Callbacks</h4>
+<h4 id="callbacks">Callbacks</h4>
 
 <p>(TODO) list of available call backs</p>
 
-<h4>Migrations</h4>
+<h4 id="migrations">Migrations</h4>
 
 <p>(TODO) - maybe mention migrations</p>
 
-<h3>CRUD</h3>
+<h3 id="crud">CRUD</h3>
 
 <p>(TODO) -CRUD</p>
 
-<h4>Creating</h4>
+<h4 id="creating">Creating</h4>
 
 <p>To create a new record, just call the method new on a model and pass it your attributes.</p>
 
@@ -680,7 +646,7 @@ belongs_to :author, :class =&gt; 'User', :foreign_key =&gt; 'author_id'
 @post.save
 </code></pre>
 
-<h4>Reading (aka finding)</h4>
+<h4 id="reading_aka_finding_">Reading (aka finding)</h4>
 
 <p>The syntax for retrieving data from the database is clean an simple. As you can see with the following examples.</p>
 
@@ -732,14 +698,14 @@ belongs_to :author, :class =&gt; 'User', :foreign_key =&gt; 'author_id'
 
 <p>If you require a custom find, you can use sql with the method, find_by_sql. This will return an array of Structs (which are read-only) with the result of the query. </p>
 
-<h5>Count</h5>
+<h5 id="count">Count</h5>
 
 <p>DM provides a count method to count the number of records of a model, you can also pass search conditions to count:</p>
 
 <pre><code>comment_count = Post[1].comments.count
 </code></pre>
 
-<h5>Each</h5>
+<h5 id="each">Each</h5>
 
 <p>(TODO) - Each</p>
 
@@ -750,7 +716,7 @@ belongs_to :author, :class =&gt; 'User', :foreign_key =&gt; 'author_id'
 3 end
 </code></pre>
 
-<h4>Updating</h4>
+<h4 id="updating">Updating</h4>
 
 <pre><code>1 zoo.update_attributes(:name =&gt; 'Funky Town Municipal Zoo')
 </code></pre>
@@ -758,7 +724,7 @@ belongs_to :author, :class =&gt; 'User', :foreign_key =&gt; 'author_id'
 <p>(TODO) - updating attributes
 (TODO) - Dirty? only updates the changed attributes, so take note for virtual attrs</p>
 
-<h4>Destroying</h4>
+<h4 id="destroying">Destroying</h4>
 
 <p>You can destroy database records with the method destroy!, this work much like AR.</p>
 
@@ -771,14 +737,26 @@ bad_comment.destroy!
 <pre><code>Comment.delete_all
 </code></pre>
 
-<h2>Routing</h2>
+<h2 id="routing">Routing</h2>
+
+<p>Routing is similar to rails </p>
+
+<h3 id="strings_regex">Strings/Regex</h3>
+
+<h3 id="hashes">Hashes</h3>
+
+<h3 id="restful_routes">Restful Routes</h3>
+
+<h4 id="nested_routes">Nested Routes</h4>
+
+<h3 id="urls">URLs</h3>
 
 <p>(TODO) - Defining routes, and resources
 (TODO) - Nested routes
 (TODO) - Namespaces
 (TODO) - Show routes, merb.show_routes in merb's irb console (merb -i)</p>
 
-<h2>Controllers</h2>
+<h2 id="controllers">Controllers</h2>
 
 <p>(TODO) - filters, how the chaining works and :throw
 (TODO) - how params get passed in controllers
@@ -790,12 +768,12 @@ bad_comment.destroy!
 (TODO) - content_type
 (TODO) - flash?</p>
 
-<h2>Views</h2>
+<h2 id="views">Views</h2>
 
 <p>(TODO) - form helpers
 (TODO) - mention you can use other template languages</p>
 
-<h3>Partials</h3>
+<h3 id="partials">Partials</h3>
 
 <p>Use the partial method to render a partial from the current directory. If you pass a hash as the second argument the contents will be made available as local variables in the partial.</p>
 
@@ -807,35 +785,35 @@ bad_comment.destroy!
 <pre><code>partial :post, :with =&gt; @posts, :as =&gt; post
 </code></pre>
 
-<h2>Mailers</h2>
+<h2 id="mailers">Mailers</h2>
 
 <p>(TODO) - sending mail
 (TODO) - mail templates in /views</p>
 
-<h2>Authentication</h2>
+<h2 id="authentication">Authentication</h2>
 
 <p>(TODO) - Rolling your own
 (TODO) - integrating RESTful auth (merbful)</p>
 
-<h2>Attachments</h2>
+<h2 id="attachments">Attachments</h2>
 
 <p>(TODO) - attachment_pu
 (TODO) - image resize/crop
 (TODO) - downloading</p>
 
-<h1>RSpec</h1>
+<h1 id="rspec">RSpec</h1>
 
 <p>When using stubs with RSpec you can roughly categorise the methods you are going to use into two categories. On one side you have the sub! and should_receive methods which refine what methods you expect to be called with what parameters and potentially what they should return in the case of the test being run. On the other side you have assertions which test the output and value or variables. The should method is primarily used when asserting things.</p>
 
-<h3>What is it?</h3>
+<h3 id="what_is_it_">What is it?</h3>
 
 <p>(TODO) - BDD</p>
 
-<h3>Why test?</h3>
+<h3 id="why_test_">Why test?</h3>
 
 <p>(TODO) benefits of testing</p>
 
-<h3>What to test?</h3>
+<h3 id="what_to_test_">What to test?</h3>
 
 <p>(TODO) - how to write good test and what should just trust works</p>
 
@@ -843,21 +821,21 @@ bad_comment.destroy!
 
 <p>(TODO) - What is it and why mock</p>
 
-<h2>Helpers</h2>
+<h2 id="helpers">Helpers</h2>
 
 <p>(TODO) - what should you use helpers for?</p>
 
-<h2>Spec'ing Models</h2>
+<h2 id="spec_ing_models">Spec'ing Models</h2>
 
 <p>(TODO) - How to spec models, use example merb/dm test talk through them, mocking</p>
 
-<h2>Spec'ing Views</h2>
+<h2 id="spec_ing_views">Spec'ing Views</h2>
 
 <p>(TODO) - What they should test</p>
 
-<h2>Spec'ing Controllers</h2>
+<h2 id="spec_ing_controllers">Spec'ing Controllers</h2>
 
-<h3>Getting started</h3>
+<h3 id="getting_started">Getting started</h3>
 
 <p>Testing controllers typically involves stubbing out some methods, making a fake request and then ensuring the right variables are assigned, exceptions are raised and views rendered.</p>
 
@@ -909,7 +887,7 @@ end
 
 <p>Unlike the last test there was no need for us to stub the render method because DataMapper::ObjectNotFoundError is raised before it is reached.</p>
 
-<h3>Testing multipart forms</h3>
+<h3 id="testing_multipart_forms">Testing multipart forms</h3>
 
 <p>(TODO: Make and example of uploading assets in the simple blog)</p>
 
@@ -938,50 +916,54 @@ end
 end
 </code></pre>
 
-<h2>Caching</h2>
+<h3 id="more_ways_to_dispatch_a_request">More ways to dispatch a request</h3>
+
+<p>There are several other ways to dispatch a request in your test.</p>
+
+<h2 id="caching">Caching</h2>
 
 <p>(TODO) - session cache
 (TODO) - Query/Mem cache</p>
 
-<h1>Gotchas</h1>
+<h1 id="gotchas">Gotchas</h1>
 
-<h2>Merb</h2>
+<h2 id="merb">Merb</h2>
 
 <p>(TODO) - Merb/Rails diffs</p>
 
-<h2>DataMapper</h2>
+<h2 id="datamapper">DataMapper</h2>
 
 <p>(TODO) - DM / AR diffs</p>
 
-<h2>RSpec</h2>
+<h2 id="rspec">RSpec</h2>
 
 <p>(TODO) - Test:Unit / RSpec diffs</p>
 
-<h1>Submitting a patch</h1>
+<h1 id="submitting_a_patch">Submitting a patch</h1>
 
 <p>http://www.gweezlebur.com/2008/2/1/so-you-want-to-contribute-to-merb-core-part-1</p>
 
 <p>(TODO) - example patch</p>
 
-<h3>Diffs</h3>
+<h3 id="diffs">Diffs</h3>
 
 <p>(TODO) - where to send diffs</p>
 
-<h3>Docs</h3>
+<h3 id="docs">Docs</h3>
 
 <p>(TODO) - doc convention</p>
 
-<h3>Specs</h3>
+<h3 id="specs">Specs</h3>
 
 <p>(TODO) - write specs</p>
 
-<h1>Hacking Merb</h1>
+<h1 id="hacking_merb">Hacking Merb</h1>
 
 <p>(TODO) - Hacking Merb</p>
 
 <h2> </h2>
 
-<h2>Changing the directory structure</h2>
+<h2 id="changing_the_directory_structure">Changing the directory structure</h2>
 
 <pre><code># Build the framework paths.
 #
@@ -1050,7 +1032,7 @@ class Merb::BootLoader::BuildFramework &lt; Merb::BootLoader
 end
 </code></pre>
 
-<h1>Deploying a Merb App</h1>
+<h1 id="deploying_a_merb_app">Deploying a Merb App</h1>
 
 <p>(TODO) - get ben32 stuff on this</p>
 
