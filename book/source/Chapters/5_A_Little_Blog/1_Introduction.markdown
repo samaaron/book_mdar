@@ -13,21 +13,24 @@ First of all let's define some of the functionality we would expect from any blo
 
 Lets get started with out application:
 
-    merb simple_blog
+    merb-gen simple_blog
 
-We're going to use the Linguistics gem so you'll need to install it.
-(TODO) - linguistics gem install
+We're going to use the Linguistics gem later on, you can install it with:
+    
+    gem install Linguistics
 
 Set up the configuration files as before:
 
-config/dependencies.rb
+config/init.rb
 
     use_orm :data_mapper
 
     use_test :rspec
-
-    dependencies "RedCloth", "merb_helpers"
-    dependencies 'linguistics'
+    
+    Merb::BootLoader.before_app_loads do
+      dependencies "RedCloth", "merb_helpers"
+      dependencies 'linguistics'
+    end
     
 Now add a config/database.yml file with the following:
 

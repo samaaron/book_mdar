@@ -6,7 +6,7 @@ Having discussed the functionality we can deduce that we will need the following
 
 Merb has a model generator just as rails does:
 
-    script/generate model post
+    merb-gen model post
 
 This is make a post model for you, provided that you have defined an orm and the database simple_blog, in the previous steps.
 
@@ -64,7 +64,7 @@ http://pastie.textmate.org/private/mrvx3qmuagypwukrri9jq
 ##### Where is my has\_many :through?!
 has\_many :through is in the pipes, but it is not currently available in DM. You could write your own methods, which mimicked that behaviour.
     
-    (TODO) -example for hmthrough
+    http://pastie.textmate.org/156097
  
 #### Validation
 
