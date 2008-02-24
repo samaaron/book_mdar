@@ -7,6 +7,7 @@ An example merb application, which uses sqlite3
 It's a bit of a contrived example as accounts probably don't need to be a separate model but oh well.
 
 TODO:
+rewrite for 0.9
 custom validation moved from controller to model for transaction creation
 actually use the transactions in DM
 convert some controllers to a part controller?

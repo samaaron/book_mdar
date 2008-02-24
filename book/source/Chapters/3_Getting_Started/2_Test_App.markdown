@@ -48,17 +48,19 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
     
 ## Configuring Merb
 
-Right so lets try and get the server running, before we do that you'll need to edit the dependencies.rb 
-file so un-comment the following lines (this is only necessary if you need to connect to a database):
+Right so lets try and get the server running, before we do that you'll need to edit the init.rb 
+file so un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 
-config/dependencies.rb
+config/init.rb
     
     use_orm :data_mapper
 
     use_test :rspec
-
-    dependencies "RedCloth", "merb_helpers"
-      
+    
+    Merb::BootLoader.before_app_loads do
+        dependencies "RedCloth", "merb_helpers"
+    end
+          
 
 Typing merb now in your command line will try and start the server.
 
@@ -86,5 +88,5 @@ You'll notice Merb runs on port 4000, but this can be changed with flag -p [port
     
 You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
 
-    $ merb -a thin
+    merb -a thin
 

@@ -1,5 +1,5 @@
 # The Framework
-
+(TODO) - rewrite for 0.9
 Lets take a closer look at the directory structure that we've just created. I'll give brief overview of the framework here and go into further details of each component in subsequent chapters.
 
 (TODO) - book:publish to add image
