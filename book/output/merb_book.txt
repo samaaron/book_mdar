@@ -74,7 +74,12 @@ Life On The Edge With Merb, DataMapper & RSpec
 - [Hacking Merb](#hacking_merb)
     - [ ](#)
     - [Changing the directory structure](#changing_the_directory_structure)
-- [Deploying a Merb App](#deploying_a_merb_app)
+- [Deploying a Merb Application](#deploying_a_merb_application)
+    - [The Big Picture](#the_big_picture)
+    - [Capistrano](#capistrano)
+    - [The Proxy](#the_proxy)
+    - [Mongrel and Alternatives](#mongrel_and_alternatives)
+    - [Other Resources](#other_resources)
 
 # Life On The Edge With Merb, DataMapper & RSpec
 # Forward
@@ -223,12 +228,26 @@ and you'll need to install the following gems:
         mocha rubigen haml markaby mailfactory ruby2ruby -y
 
     git clone git://github.com/wycats/merb-core.git
-    git clone git://github.com/wycats/merb-more.git
-    git clone git://github.com/wycats/merb-plugins.git
-    
-Within each gem run:
-
+    cd merb-core
     rake install
+    
+    git clone git://github.com/wycats/merb-more.git
+    cd merb-more
+    rake install
+    
+    git clone git://github.com/wycats/merb-plugins.git
+    cd merb-plugins
+    
+    cd merb_datamapper
+    rake install
+    cd ../merb_helpers
+    rake install
+    cd ../merb_rspec
+    rake install
+    cd ../merb_param_protection
+    rake install
+    
+
 
 If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.
 
@@ -240,6 +259,7 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
     sudo gem install merb_datamapper
     sudo gem install data_objects
     sudo gem install do_mysql || do_sqlite3 || do_postgres
+    
 
 You need to install the correct database adaptor for the database you are using. I'll use MySQL, 
 but you can use any of the above. If you get the following error message, 'Cannot find mysql_config in 
@@ -251,6 +271,22 @@ your path', then you need to add your MySQL bin directory to your path or you ca
     # If updating the gem:
     sudo env PATH=/usr/local/mysql/bin:$PATH gem update do_mysql -- \
         --with-mysql-dir=/usr/local/mysql
+
+If you want the latest source:
+
+    git clone git://github.com/sam/dm.git
+    git clone git://github.com/sam/do.git
+
+    cd do
+    cd data_objects
+    rake install
+    cd ../do_mysql  # || do_postgres || do_sqlite3
+    rake install
+    
+    cd dm    
+    rake install
+    
+To update a gem from source, run git pull and rake install again.
 
 ## Install RSpec
 
@@ -312,17 +348,19 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
     
 ## Configuring Merb
 
-Right so lets try and get the server running, before we do that you'll need to edit the dependencies.rb 
-file so un-comment the following lines (this is only necessary if you need to connect to a database):
+Right so lets try and get the server running, before we do that you'll need to edit the init.rb 
+file so un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 
-config/dependencies.rb
+config/init.rb
     
     use_orm :data_mapper
 
     use_test :rspec
-
-    dependencies "RedCloth", "merb_helpers"
-      
+    
+    Merb::BootLoader.before_app_loads do
+        dependencies "RedCloth", "merb_helpers"
+    end
+          
 
 Typing merb now in your command line will try and start the server.
 
@@ -350,11 +388,11 @@ You'll notice Merb runs on port 4000, but this can be changed with flag -p [port
     
 You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
 
-    $ merb -a thin
+    merb -a thin
 
 
 # The Framework
-
+(TODO) - rewrite for 0.9
 Lets take a closer look at the directory structure that we've just created. I'll give brief overview of the framework here and go into further details of each component in subsequent chapters.
 
 (TODO) - book:publish to add image
@@ -908,6 +946,26 @@ http://www.gweezlebur.com/2008/2/1/so-you-want-to-contribute-to-merb-core-part-1
 
 
 
-# Deploying a Merb App
+# Deploying a Merb Application
 
-(TODO) - get ben32 stuff on this
+> "Good Quote Here"
+
+The most satisfying experience of building a web application is having others use it.  Implementing a robust deployment plan is essential to ensure each release of your project goes off with out a hitch.
+
+## The Big Picture
+
+(TODO) Outline The Pieces: Capistrano, Nginx (Mention Apache, focus on Nginx), Mongrel (and alternatives)
+
+## Capistrano
+
+(TODO)
+
+## The Proxy
+
+(TODO)
+
+## Mongrel and Alternatives
+
+(TODO)
+
+## Other Resources
