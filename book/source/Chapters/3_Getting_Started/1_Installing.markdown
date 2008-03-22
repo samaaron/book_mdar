@@ -49,6 +49,10 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 
 ## Installing Datamapper
 
+***
+DataMapper is splitting into dm-core and dm-more
+***
+
     sudo gem install merb_datamapper
     sudo gem install data_objects
     sudo gem install do_mysql || do_sqlite3 || do_postgres
