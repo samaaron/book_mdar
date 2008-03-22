@@ -9,11 +9,12 @@ The target reader is someone who has some experience with writing Ruby on Rails 
 
 Copyright &copy; 2008 Matthew Ford. All rights reserved. 
 
-With generous contributions from:
+Authors:
 
-* Andy Kent - Caching, book formatting and layout
-* Damien Tanner - A Little blog
-* Ben Reubenstein - Deployment
+* Matthew Ford
+* Andy Kent
+* Damien Tanner
+* Ben Reubenstein
 * (add your name)
 
 <br />
