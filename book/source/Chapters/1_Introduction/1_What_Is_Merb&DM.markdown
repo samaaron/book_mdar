@@ -10,9 +10,9 @@ Merb is a bit like Ruby on Rails, as they both are frameworks for building web a
 
 If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Where Merb differs the most from Rails is it's approach to modularisation, it's not tied down to a particular ORM for example so you can use any one you wish.
 
-This means the core of Merb is simple with additional functionality provided by plugins (gems).
+This means the core of Merb is simple with additional functionality provided by gems.
 
-Merb is actually made up of two gems, merb-core and merb-more. This is so you can pick and choose the functionality you need, the gem merb installs both merb-core and merb-more so you can get started straight away.
+Merb is actually made up of a number of gems, merb-core, merb-more, merb-plugins. This is so you can pick and choose the functionality you need, the gem merb installs both merb-core and merb-more so you can get started straight away.
 
 You might be wondering what's the benefit of this? Well merb-core can be used as an upload server, provide an api or as simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary. It also supports the [rack webserver interface](http://rack.rubyforge.org/) so you can use any web server that has rack support (mongrel, thin, etc.) 
 
