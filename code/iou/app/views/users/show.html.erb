@@ -1,0 +1,35 @@
+<h1><%= @user.name %></h1>
+
+<h2>You're owed <%= money(@value) %></h2>
+<hr />
+<h2><%= link_to "Make a new I-O-U >>", url(:new_transaction)%></h2>
+<hr />
+
+
+<div class='column span-12'>
+<h3>I-O-U's You've sent:</h3>
+<table>
+  <% @sent.each do |t| %>
+  <tr>
+  <td><%=money t.value %> to <%=link_to t.receiver.name, url(:user, t.receiver) %></td>
+<td><%= delete_button :transaction, t, "I've Paid this!" -%></td>
+  </tr>
+  <% end %>
+</table>
+</div>
+
+<div class='column span-12 last'>
+<h3>I-O-U's from:</h3>
+<table>
+  <% @received.each do |t| %>
+  <tr>
+    <td><%= link_to t.sender.name, url(:user, t.sender) %> for <%= money(t.value) %></td>
+    <td><%= delete_button :transaction, t, "They've Paid me" -%></td>
+  </tr>
+  <% end %>
+</table>
+</div>
+
+
+<hr />
+<h3><%= link_to "Home", "/" %></h3>

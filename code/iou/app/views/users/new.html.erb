@@ -1,0 +1,9 @@
+<h1>Add a new user</h1>
+<% form_for @user, :action => url(:users) do %>
+  <fieldset>
+  <%= partial :form %>
+    <%= submit_button "Create" -%>
+  </fieldset>
+<% end %>
+
+<h3><%= link_to "Home", "/" %></h3>

@@ -1,0 +1,11 @@
+<h1>List of Users</h1>
+
+<ul>
+<% @users.each do |u| %>
+<li><%= link_to u.name, url(:user, u) %> is owed <%= money u.account.value %> </li>
+<% end %>
+</ul>
+
+<p><%= link_to "Add a new user", url(:new_user) %></p>
+
+<h3><%= link_to "Home", "/" %></h3>
