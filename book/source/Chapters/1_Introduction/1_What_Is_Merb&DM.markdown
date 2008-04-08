@@ -26,4 +26,4 @@ DataMapper has some similarities with ActiveRecord but we will highlight the dif
 
 ## RSpec
 
-(TODO) intro to RSpec
+Merb currently supports the Test::Unit and Rspec testing frameworks. As the Specs for Merb and Datamapper are in RSpec, we will be covering some aspects of RSpec but it will not be our main focus. RSpec is a Behaviour Driven Development framework for Ruby. 
