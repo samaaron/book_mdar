@@ -1,9 +1,0 @@
-<h1>All I-O-U's</h1> 
-  <table>
-<% @transactions.each do |t| %>
-<tr>
-  <td><%= link_to t.sender.name, url(:user, t.sender) %> owes <%= link_to t.receiver.name, url(:user, t.sender) %> <%= money t.value  %></td>
-</tr>  
-<% end %>
-</table>
-<h3><%= link_to "Home", "/" %></h3>
