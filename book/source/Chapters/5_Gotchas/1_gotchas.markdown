@@ -147,5 +147,3 @@ Run the `merb-gen frozen-merb` command to instal a script for running your froze
 (TODO) - DM / AR diffs
 
 ## RSpec
-
-(TODO) - Test:Unit / RSpec diffs
