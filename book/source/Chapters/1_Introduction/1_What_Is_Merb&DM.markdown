@@ -6,7 +6,7 @@ Merb, DataMapper and RSpec are all open source projects, which can be used for b
 
 ## [Merb](http://merbivore.com/)
 
-It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can any web server that has rack support (Mongrel, Thin, ebb, etc).
+It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can user any web server that has rack support (Mongrel, Thin, ebb, etc).
 
 If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Noticeable differences from Merb to Rails are, it's stance on being less opinionated and it's approach to modularisation.
 
@@ -15,7 +15,7 @@ Merb is actually made up of a number of gems, `merb-core`, `merb-more`, `merb-pl
 
 You might be wondering what can I use `merb-core` for? `merb-core` can be used as an upload server, provide an API or as simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary.
 
-## [Datamapper](http://datamapper.org/)
+## [DataMapper](http://datamapper.org/)
 
 DataMapper is an Object-Relational Mapper (ORM) written in Ruby, created by Sam Smoot and is what we'll be using with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
 
