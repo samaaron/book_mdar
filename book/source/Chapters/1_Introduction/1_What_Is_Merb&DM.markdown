@@ -4,7 +4,7 @@
 
 Merb, DataMapper and RSpec are all open source projects, which can be used for building kick-ass web applications. They are all in active development and it can be hard to keep up, but we'll try our best to keep up to date.
 
-## Merb
+## [Merb](http://merbivore.com/)
 
 It's a relatively new framework (a bit like Ruby on Rails) and was created by [Ezra Zygmuntowicz](http://brainspl.at/).  Merb stands for Mongrel + ERB although now it supports the [rack webserver interface](http://rack.rubyforge.org/) so it can any web server that has rack support (Mongrel, Thin, ebb, etc).
 
@@ -15,7 +15,7 @@ Merb is actually made up of a number of gems, `merb-core`, `merb-more`, `merb-pl
 
 You might be wondering what can I use `merb-core` for? `merb-core` can be used as an upload server, provide an API or as simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary.
 
-## Datamapper
+## [Datamapper](http://datamapper.org/)
 
 DataMapper is an Object-Relational Mapper (ORM) written in Ruby, created by Sam Smoot and is what we'll be using with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
 
@@ -23,6 +23,6 @@ It has some nice features which makes it faster than ActiveRecord in some cases,
 
 DataMapper has some similarities with ActiveRecord and we will be highlighting the differences as we go along.
 
-## RSpec
-[RSpec](http://rspec.info/) is a Behaviour Driven Development framework for Ruby. 
+## [RSpec](http://rspec.info/)
+RSpec is a Behaviour Driven Development framework for Ruby. 
 Merb currently supports the Test::Unit and RSpec testing frameworks. As the specs for Merb and Datamapper are written in RSpec, we will be covering some aspects of RSpec but it will not be our main focus. 
