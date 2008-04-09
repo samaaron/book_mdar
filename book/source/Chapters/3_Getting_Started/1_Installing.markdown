@@ -50,7 +50,7 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 ## Installing Datamapper
 
 ***
-DataMapper is splitting into dm-core and dm-more
+_Note: DataMapper is splitting into dm-core and dm-more so this will be outdated soon_
 ***
 
     sudo gem install merb_datamapper

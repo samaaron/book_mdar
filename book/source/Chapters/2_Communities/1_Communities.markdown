@@ -6,9 +6,9 @@ None of this would be possible without the help of the fantastic communities aro
 
 These are the first places to go for help, check out the apis and see if you can find your answer there.
 
-* http://merbivore.com/
-* http://datamapper.org/
-* http://rspec.info/
+* [http://merbivore.com/](http://merbivore.com/)
+* [http://datamapper.org/](http://datamapper.org/)
+* [http://rspec.info/](http://rspec.info/)
 
 ## IRC Channels - freenode.net
 
