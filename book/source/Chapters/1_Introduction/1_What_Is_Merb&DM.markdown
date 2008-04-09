@@ -10,18 +10,18 @@ It's a relatively new framework (a bit like Ruby on Rails) and was created by [E
 
 If you know Ruby and have used Rails you're likely to get the hang of Merb quite easily. Noticeable differences from Merb to Rails are, it's stance on being less opinionated and it's approach to modularisation.
 
-Merb is actually made up of a number of gems, `merb-core`, `merb-more`, `merb-plugins`. This is so you can pick and choose the functionality you need. The `merb` gem installs both `merb-core` and `merb-more` so you can get started straight away. The benefit of modularity is it's kept simple with additional functionality provided through gems.
+Merb is actually made up of a number of gems: `merb-core`, `merb-more` and `merb-plugins`. This is so you can pick and choose the functionality you need. The `merb` gem installs both `merb-core` and `merb-more` so you can get started straight away. The benefit of modularity is it's kept simple with additional functionality provided by gems.
 
 
-You might be wondering what can I use `merb-core` for? `merb-core` can be used as an upload server, provide an API or as simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary.
+`merb-core` alone can be used as an upload server, to provide an API or to create a simple web app (a la [camping](http://code.whytheluckystiff.net/camping/)) where the functionality of a fully fledged framework isn't necessary.
 
 ## [DataMapper](http://datamapper.org/)
 
-DataMapper is an Object-Relational Mapper (ORM) written in Ruby, created by Sam Smoot and is what we'll be using with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
+DataMapper is an Object-Relational Mapper (ORM) written in Ruby, by Sam Smoot. It's what we'll be using with Merb. It's possible to use the same ORM as Rails (ActiveRecord), but as there are plenty of examples of using ActiveRecord already I've chosen to use DataMapper.
 
-It has some nice features which makes it faster than ActiveRecord in some cases, what really stands out for me is the way it handles database attributes. The schema, migrations and attributes are all defined in one place, your model. So you no longer have to look around in your database or other files to see what is defined.
+It has some nice features which makes it faster than ActiveRecord in some cases. What really stands out for me is the way it handles database attributes. The schema, migrations and attributes are all defined in one place: your model. So you no longer have to look around in your database or other files to see what is defined.
 
-DataMapper has some similarities with ActiveRecord and we will be highlighting the differences as we go along.
+DataMapper has some similarities with ActiveRecord. We will be highlighting the differences as we go along.
 
 ## [RSpec](http://rspec.info/)
 RSpec is a Behaviour Driven Development framework for Ruby. 
