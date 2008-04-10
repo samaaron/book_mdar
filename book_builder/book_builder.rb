@@ -2,7 +2,7 @@
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
 # require dependancies
-%W(rubygems rake fileutils BlueCloth hpricot erb).each do |pkg| 
+%W(rubygems rake fileutils bluecloth hpricot erb).each do |pkg| 
   begin
     require pkg 
   rescue LoadError => e 
