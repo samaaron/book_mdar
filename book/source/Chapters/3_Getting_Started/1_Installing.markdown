@@ -9,7 +9,7 @@ Before we get started I'm going to assume you have the following installed:
 
 ## Installing Merb
 
-If you just want to play around with Merb grab the gem:
+If you just want to play around with Merb install the `merb` gem:
     
     sudo gem install merb --source http://merbivore.org 
     
@@ -17,8 +17,8 @@ If you just want to play around with Merb grab the gem:
 On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
 and you'll need to install the following gems:
 
-    sudo gem install mongrel json_pure erubis mime-types rspec hpricot \
-        mocha rubigen haml markaby mailfactory ruby2ruby -y
+    sudo gem install rack mongrel json_pure erubis mime-types rspec hpricot \
+        mocha rubigen haml markaby mailfactory ruby2ruby
 
     git clone git://github.com/wycats/merb-core.git
     cd merb-core
@@ -30,17 +30,7 @@ and you'll need to install the following gems:
     
     git clone git://github.com/wycats/merb-plugins.git
     cd merb-plugins
-    
-    cd merb_datamapper
     rake install
-    cd ../merb_helpers
-    rake install
-    cd ../merb_rspec
-    rake install
-    cd ../merb_param_protection
-    rake install
-    
-
 
 If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.
 
@@ -71,7 +61,9 @@ your path', then you need to add your MySQL bin directory to your path or you ca
 
 If you want the latest source:
 
-    git clone git://github.com/sam/dm.git
+    git clone git://github.com/sam/dm-core.git
+    git clone git://github.com/sam/dm-more.git
+    
     git clone git://github.com/sam/do.git
 
     cd do
@@ -80,7 +72,13 @@ If you want the latest source:
     cd ../do_mysql  # || do_postgres || do_sqlite3
     rake install
     
-    cd dm    
+    cd dm-core    
+    rake install
+    
+    cd dm-more
+    cd dm-merb    
+    rake install
+    cd ../dm-validations
     rake install
     
 To update a gem from source, run git pull and rake install again.

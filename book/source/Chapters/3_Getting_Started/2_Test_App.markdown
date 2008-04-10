@@ -2,50 +2,55 @@
 
 Right now that we've got all of that installed, time to create some test Merb application. Merb follows the same naming convention for projects that rails does, so 'my\_test\_app' and 'Test2' for example are valid names but 'T 3' is not, as they need to be valid SQL table names.
 
-I like to keep my projects in different directories, so I have a different folder for my Merb apps and 
-Rails apps (but it's up to you). So at the command line type:
+I like to keep my projects in different directories, so I have a different folder for my Merb apps and Rails apps (but it's up to you). So at the command line type:
 
     mkdir merb
     cd merb
-    merb-gen example_one
+    merb-gen app example_one
     
 This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
 
     # expected output
-    create  app
-    create  app/controllers
-    create  app/helpers
-    create  app/views
-    create  app/views/exceptions
-    create  app/views/layout
-    create  config
-    create  config/environments
-    create  public
-    create  public/images
-    create  public/stylesheets
-    create  spec
-    create  app/controllers/application.rb
-    create  app/controllers/exceptions.rb
-    create  app/helpers/global_helpers.rb
-    create  app/views/exceptions/internal_server_error.html.erb
-    create  app/views/exceptions/not_acceptable.html.erb
-    create  app/views/exceptions/not_found.html.erb
-    create  app/views/layout/application.html.erb
-    create  config/rack.rb
-    create  config/router.rb
-    create  config/init.rb
-    create  config/environments/development.rb
-    create  config/environments/production.rb
-    create  config/environments/test.rb
-    create  public/merb.fcgi
-    create  public/images/merb.jpg
-    create  public/stylesheets/master.css
-    create  spec/spec.opts
-    create  spec/spec_helper.rb
-    create  /Rakefile
-        
+    RubiGen::Scripts::Generate
+      create  app
+      create  app/controllers
+      create  app/helpers
+      create  app/views
+      create  app/views/exceptions
+      create  app/views/layout
+      create  autotest
+      create  config
+      create  config/environments
+      create  public
+      create  public/images
+      create  public/stylesheets
+      create  spec
+      create  app/controllers/application.rb
+      create  app/controllers/exceptions.rb
+      create  app/helpers/global_helpers.rb
+      create  app/views/exceptions/internal_server_error.html.erb
+      create  app/views/exceptions/not_acceptable.html.erb
+      create  app/views/exceptions/not_found.html.erb
+      create  app/views/layout/application.html.erb
+      create  autotest/discover.rb
+      create  autotest/merb.rb
+      create  autotest/merb_rspec.rb
+      create  config/rack.rb
+      create  config/router.rb
+      create  config/init.rb
+      create  config/environments/development.rb
+      create  config/environments/production.rb
+      create  config/environments/rake.rb
+      create  config/environments/test.rb
+      create  public/merb.fcgi
+      create  public/images/merb.jpg
+      create  public/stylesheets/master.css
+      create  spec/spec.opts
+      create  spec/spec_helper.rb
+      create  /Rakefile
 
-    
+
+
 ## Configuring Merb
 
 Right so lets try and get the server running, before we do that you'll need to edit the init.rb 
