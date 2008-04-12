@@ -30,8 +30,8 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 
 Source code is dual licensed under the MIT and GPL licenses:
 
-* [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php)
-* [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html)
+* http://www.opensource.org/licenses/mit-license.php
+* http://www.gnu.org/licenses/gpl.html
 
 
 
