@@ -1,0 +1,25 @@
+body {
+	background-color: #F2FFDF;
+	color: #191919;
+	font: 80% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+}
+
+pre code {
+	margin-left:2em;
+	display:block;
+}
+
+blockquote p {
+	padding:2em;
+	font-style: italic;
+}
+
+#book-content a {
+	color: #DDD4AB;
+	text-decoration:none;
+	background-color: #7F9989;
+}
+
+#book-content a:hover {
+	border-bottom: solid 1px #262626;
+}

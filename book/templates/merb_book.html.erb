@@ -11,9 +11,13 @@
 
 <body>
 
-<%=parse_toc_to(:html)%>
+<div id="table-of-contents">
+  <%=parse_toc_to(:html)%>
+</div>
 
-<%=parse_body_to(:html)%>
+<div id="book-content">
+  <%=parse_body_to(:html)%>
+</div>
 
 </body>
 </html>
