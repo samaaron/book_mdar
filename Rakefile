@@ -12,7 +12,14 @@ namespace :book do
   
   desc "Outstanding TODO's"  
   task :todo do
-    system('grep --exclude=\*.svn\* -hr TODO book/source/')
+    # man this is messy! -bj
+    `grep --exclude=\*.svn\* -nr TODO book/source/`.each_line do |line|
+      path, line, *note = line.split ':'
+      note = note.join(':').strip
+      path.gsub!(/[^\d]+/, '.').gsub!(/^\.|\.$/,'')
+      
+      log "#{note} (Section #{path}, Line #{line})"
+    end
   end
 
   namespace :publish do
