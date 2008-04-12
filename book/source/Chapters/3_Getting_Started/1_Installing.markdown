@@ -13,7 +13,6 @@ If you just want to play around with Merb install the `merb` gem:
     
     sudo gem install merb --source http://merbivore.org 
     
-    
 On the other hand if you want to get down and dirty it's best to grab the source code from trunk 
 and you'll need to install the following gems:
 
@@ -32,9 +31,9 @@ and you'll need to install the following gems:
     cd merb-plugins
     rake install
 
-If you need to use JSON you should install the json gem (as it's faster), json_pure is used so merb will install on JRuby.
+If you need to use JSON you should install the `json` gem (as it's faster). `json_pure` is used so Merb will install on JRuby.
 
-Merb is ORM agnostic, but as the title of this book suggests we'll be using Datamapper.
+Merb is ORM agnostic, but as the title of this book suggests we'll be using DataMapper.
 Should you want to stick with ActiveRecord or play with Sequel, check the [merb documentation](http://merb.rubyforge.org/files/README.html) for install instructions.
 
 ## Installing Datamapper
@@ -81,14 +80,11 @@ If you want the latest source:
     cd ../dm-validations
     rake install
     
-To update a gem from source, run git pull and rake install again.
+To update a gem from source, run `git pull` and `rake install` again.
 
 ## Install RSpec
 
-To install the gem, or get the source from trunk:
+The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the library from source, run one of the following commands:
 
     gem install rspec
     svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk
-    
-
-

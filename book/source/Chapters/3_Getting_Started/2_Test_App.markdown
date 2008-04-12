@@ -49,11 +49,9 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
       create  spec/spec_helper.rb
       create  /Rakefile
 
-
-
 ## Configuring Merb
 
-Right so lets try and get the server running, before we do that you'll need to edit the init.rb 
+Right, so let's try and get the server running, before we do that you'll need to edit the init.rb 
 file so un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 
 config/init.rb
@@ -65,16 +63,15 @@ config/init.rb
     Merb::BootLoader.before_app_loads do
         dependencies "RedCloth", "merb_helpers"
     end
-          
 
-Typing merb now in your command line will try and start the server.
+Typing `merb` now in your command line will try and start the server.
 
     Started merb_init.rb ...
-    No database.yml file found in /Users/work/merb/t/example_one/config.
+    No database.yml file found in /Users/work/merb/example_one/config.
     A sample file was created called database.sample.yml for you to copy and edit.
 
 As you can see, we forgot to set up the database. A sample file has kindly been generated for us. 
-So create a database.yml file a bit like this one (remember to create the database you specify):
+So create a `database.yml` file a bit like this one (remember to create the database you specify):
 
     # This is a sample database file for the DataMapper ORM
     :development:
@@ -84,14 +81,12 @@ So create a database.yml file a bit like this one (remember to create the databa
       :password: 
       :host: localhost
 
-      
-Starting merb again shows everything is running ok.
+Starting Merb again shows everything is running okay.
 
-You'll notice Merb runs on port 4000, but this can be changed with flag -p [port number]. More options can be found by typing:
+You'll notice Merb runs on port 4000, but this can be changed with flag `-p [port number]`. More options can be found by typing:
 
     merb --help
     
-You can even run merb with an application servers which supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
+You can even run Merb with any application server that supports rack (thin, evented_mongrel, fcgi, mongrel, and webrick):
 
     merb -a thin
-
