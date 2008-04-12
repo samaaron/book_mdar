@@ -40,7 +40,7 @@ namespace :book do
   
   desc "prepare a structure for publishing to"
   task :prepare do
-    log 'Preparing a publsiing structure...'
+    log 'Preparing a publishing structure...'
     book = default_book
     book.prepare!
     log 'Done!'
