@@ -2,7 +2,7 @@
 (TODO) - rewrite for 0.9
 Lets take a closer look at the directory structure that we've just created. I'll give brief overview of the framework here and go into further details of each component in subsequent chapters.
 
-![Directory Stucture](dir.jpg)
+![Directory Structure](merb-gen1.png)
 
 The app folder contains your usual Models, Views and Controllers, Helpers. It also has Parts (they inherit from `AbstractController`), similar to the old Rails components, but are lightweight and are useful for sidebars, widgets etc. `Mailers` (which also inherit from the `AbstractController`) have their own folder where the controllers and views live. 
 

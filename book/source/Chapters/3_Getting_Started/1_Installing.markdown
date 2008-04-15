@@ -20,16 +20,12 @@ and you'll need to install the following gems:
         mocha rubigen haml markaby mailfactory ruby2ruby
 
     git clone git://github.com/wycats/merb-core.git
-    cd merb-core
-    rake install
-    
-    git clone git://github.com/wycats/merb-more.git
-    cd merb-more
-    rake install
-    
     git clone git://github.com/wycats/merb-plugins.git
-    cd merb-plugins
-    rake install
+    git clone git://github.com/wycats/merb-more.git
+
+   	cd merb-core ; rake install ; cd ..    
+    cd merb-more ; rake install ; cd ..
+    cd merb-plugins; rake install ; cd ..
 
 If you need to use JSON you should install the `json` gem (as it's faster). `json_pure` is used so Merb will install on JRuby.
 
@@ -60,31 +56,27 @@ your path', then you need to add your MySQL bin directory to your path or you ca
 
 If you want the latest source:
 
+	git clone git://github.com/sam/do.git
+
+	cd do
+	cd data_objects
+	rake install ; cd ..
+	cd ../do_mysql  # || do_postgres || do_sqlite3
+	rake install
+
     git clone git://github.com/sam/dm-core.git
     git clone git://github.com/sam/dm-more.git
-    
-    git clone git://github.com/sam/do.git
 
-    cd do
-    cd data_objects
-    rake install
-    cd ../do_mysql  # || do_postgres || do_sqlite3
-    rake install
-    
-    cd dm-core    
-    rake install
-    
-    cd dm-more
-    cd dm-merb    
-    rake install
-    cd ../dm-validations
-    rake install
+    cd dm-core ; rake install ; cd ..
+    cd dm-more ; rake install ; cd ..
+    cd dm-merb ; rake install ; cd ..    
+    cd dm-validations ; rake install ; cd ..
     
 To update a gem from source, run `git pull` and `rake install` again.
 
 ## Install RSpec
 
-The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the library from source, run one of the following commands:
+The `rspec` gem was installed in the Merb section above. However, if for some reason you didn't install it there, or want to grab the it from source, run the following commands:
 
     gem install rspec
     svn checkout http://rspec.rubyforge.org/svn/trunk rspec_trunk

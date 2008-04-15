@@ -6,7 +6,7 @@ I like to keep my projects in different directories, so I have a different folde
 
     mkdir merb
     cd merb
-    merb-gen app example_one
+    merb-gen app test
     
 This will generate an empty Merb app, so lets go in and take a look. You'll notice that the directory structure is similar to Rails, with a few differences.
 
@@ -51,8 +51,7 @@ This will generate an empty Merb app, so lets go in and take a look. You'll noti
 
 ## Configuring Merb
 
-Right, so let's try and get the server running, before we do that you'll need to edit the init.rb 
-file so un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
+Right, so let's try and get the server running, before we do that you'll need to edit the init.rb file so un-comment the following lines (this is only necessary if you need to connect to a database, which we do in our case):
 
 config/init.rb
     
@@ -70,8 +69,7 @@ Typing `merb` now in your command line will try and start the server.
     No database.yml file found in /Users/work/merb/example_one/config.
     A sample file was created called database.sample.yml for you to copy and edit.
 
-As you can see, we forgot to set up the database. A sample file has kindly been generated for us. 
-So create a `database.yml` file a bit like this one (remember to create the database you specify):
+As you can see, we forgot to set up the database. A sample file has kindly been generated for us. So create a `database.yml` file a bit like this one (remember to create the database you specify):
 
     # This is a sample database file for the DataMapper ORM
     :development:
