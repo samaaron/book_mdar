@@ -35,24 +35,12 @@ Should you want to stick with ActiveRecord or play with Sequel, check the [merb 
 ## Installing Datamapper
 
 ***
-_Note: DataMapper is splitting into dm-core and dm-more so this will be outdated soon_
+Note: DataMapper is splitting into dm-core and dm-more so `datamapper 0.3` will be outdated soon
 ***
 
-    sudo gem install merb_datamapper
-    sudo gem install data_objects
-    sudo gem install do_mysql || do_sqlite3 || do_postgres
-    
+We will use MySQL, but you can use any database with a data objects adapter. You will also need to ensure that MySQL is on your system path.
 
-You need to install the correct database adaptor for the database you are using. I'll use MySQL, 
-but you can use any of the above. If you get the following error message, 'Cannot find mysql_config in 
-your path', then you need to add your MySQL bin directory to your path or you can run this is the command:
-
-    sudo env PATH=/usr/local/mysql/bin:$PATH gem install pkg/ 
-    do_mysql-0.2.2.gem -- --with-mysql-dir=/usr/local/mysql
-
-    # If updating the gem:
-    sudo env PATH=/usr/local/mysql/bin:$PATH gem update do_mysql -- \
-        --with-mysql-dir=/usr/local/mysql
+(TODO) - gem instructions for dm, once 0.9 comes out
 
 If you want the latest source:
 
