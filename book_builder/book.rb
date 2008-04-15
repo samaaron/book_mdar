@@ -99,8 +99,11 @@ module BookBuilder
     end
     
     def copy_support_files
+      final_asset_path = "#{@root_path}output/Assets/"
+      FileUtils.rm_rf(final_asset_path) if File.exists? final_asset_path
+      FileUtils.mkdir final_asset_path 
       Dir["#{@root_path}source/Assets/*"].entries.each do |asset|
-        FileUtils.cp asset, "#{@root_path}output/"
+        FileUtils.cp asset, final_asset_path
       end
     end
     
