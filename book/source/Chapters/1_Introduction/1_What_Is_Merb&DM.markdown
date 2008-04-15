@@ -2,7 +2,7 @@
 
 > If you're not living on the edge, you're taking up too much room. - Alice Bartlett
 
-Merb, DataMapper and RSpec are all open source projects, which can be used for building kick-ass web applications. They are all in active development and it can be hard to keep up, but we'll try our best to keep up to date.
+Merb, DataMapper and RSpec are all open source projects that are great for building kick-ass web applications. They are all in active development and it can be hard to keep up, but we'll try our best to keep up to date.
 
 ## [Merb](http://merbivore.com/)
 
